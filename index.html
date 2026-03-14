@@ -51,12 +51,48 @@
         text-decoration: underline;
       }
 
+      /* --- Design Grid Lines --- */
+
+      .grid-lines {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 960px;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 0 0.5rem;
+      }
+
+      .grid-lines .line {
+        border-right: 1px solid var(--light-gray);
+      }
+
+      .grid-lines .line:first-child {
+        border-left: 1px solid var(--light-gray);
+      }
+
+      /* Horizontal rule between header and main */
+      header::after {
+        content: '';
+        display: block;
+        height: 1px;
+        background: var(--light-gray);
+        margin-top: 1.125rem;
+      }
+
       /* --- Header --- */
 
       header {
         max-width: 960px;
         margin: 0 auto;
-        padding: 0.5rem 0.5rem 1.125rem;
+        padding: 0.5rem 0.5rem 0;
+        position: relative;
+        z-index: 1;
       }
 
       header h1 {
@@ -76,34 +112,32 @@
       main {
         max-width: 960px;
         margin: 0 auto;
-        padding: 0.5rem 0.5rem 0.5rem;
+        padding: 0 0.5rem;
+        position: relative;
+        z-index: 1;
       }
 
       /* --- Post List --- */
 
       .posts {
         list-style: none;
-        column-count: 2;
-        column-gap: 0.5rem;
-        column-rule: 1px solid var(--light-gray);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
       }
 
       .post {
-        break-inside: avoid;
-        padding-bottom: 0.5rem;
-        margin-bottom: 0.5rem;
+        padding: 0.5rem;
         border-bottom: 1px solid var(--light-gray);
       }
 
       .post:last-child {
         border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
       }
 
       @media (max-width: 600px) {
         .posts {
-          column-count: 1;
+          grid-template-columns: 1fr;
         }
       }
 
@@ -217,7 +251,8 @@
       }
 
       .post-body ul {
-        padding-left: 0.75rem;
+        list-style-position: inside;
+        padding-left: 0;
         margin-bottom: 0.25rem;
       }
 
@@ -283,6 +318,7 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
         position: relative;
+        z-index: 1;
       }
 
       footer::before {
@@ -308,6 +344,13 @@
     </style>
   </head>
   <body>
+    <div class="grid-lines">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
     <header>
       <h1>BL<span>OC</span></h1>
     </header>
