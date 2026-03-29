@@ -4,13 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BLOC</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
       *,
       *::before,
       *::after {
@@ -20,142 +16,191 @@
       }
 
       :root {
-        --black: hsl(0, 0%, 5%);
-        --white: hsl(0, 0%, 97%);
-        --newsprint: hsl(40, 30%, 88%);
-        --red: hsl(3, 78%, 48%);
-        --blue: hsl(218, 80%, 28%);
-        --yellow: hsl(48, 95%, 55%);
-        --gray: hsl(0, 0%, 25%);
-        --light-gray: hsl(40, 20%, 82%);
+        --ink: #1a1a1a;
+        --paper: #f5f0e8;
+        --faded: #6b6560;
+        --rule: #c8c0b4;
+        --receipt-width: 400px;
       }
 
       html {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       body {
-        font-family: 'Lora', Georgia, serif;
-        background: var(--newsprint);
-        color: var(--black);
+        font-family: 'Space Mono', 'Courier New', Courier, monospace;
+        background: #d4cfc7;
+        color: var(--ink);
         line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem 1rem;
       }
 
-      a {
-        color: var(--blue);
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      /* --- Design Grid Lines --- */
-
-      .grid-lines {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
+      .receipt {
+        background: var(--paper);
         width: 100%;
-        max-width: 960px;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        display: grid;
-        grid-template-columns: 2fr 3fr 5fr 8fr;
-        padding: 0 0.5rem;
-      }
-
-      .grid-lines .line {
+        max-width: var(--receipt-width);
+        padding: 2rem 1.5rem 0;
         position: relative;
-        border-left: 1px solid transparent;
-        border-image: linear-gradient(to bottom, transparent 0%, var(--light-gray) 100%) 1;
+        box-shadow:
+          0 2px 20px rgba(0, 0, 0, 0.15),
+          0 0 0 1px rgba(0, 0, 0, 0.04);
       }
 
-      .grid-lines .line:last-child {
-        border-right: 1px solid transparent;
-        border-image: linear-gradient(to bottom, transparent 0%, var(--light-gray) 100%) 1;
-      }
-
-      /* Horizontal rule between header and main */
-      header::after {
+      /* Torn bottom edge */
+      .receipt::after {
         content: '';
         display: block;
-        height: 1px;
-        background: var(--light-gray);
-        margin-top: 1.125rem;
+        width: 100%;
+        height: 24px;
+        position: relative;
+        left: 0;
+        background: var(--paper);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,12 Q5,18 10,12 Q15,6 20,12 Q25,18 30,12 Q35,6 40,12 Q45,18 50,12 Q55,6 60,12 Q65,18 70,12 Q75,6 80,12 Q85,18 90,12 Q95,6 100,12 Q105,18 110,12 Q115,6 120,12 Q125,18 130,12 Q135,6 140,12 Q145,18 150,12 Q155,6 160,12 Q165,18 170,12 Q175,6 180,12 Q185,18 190,12 Q195,6 200,12 Q205,18 210,12 Q215,6 220,12 Q225,18 230,12 Q235,6 240,12 Q245,18 250,12 Q255,6 260,12 Q265,18 270,12 Q275,6 280,12 Q285,18 290,12 Q295,6 300,12 Q305,18 310,12 Q315,6 320,12 Q325,18 330,12 Q335,6 340,12 Q345,18 350,12 Q355,6 360,12 Q365,18 370,12 Q375,6 380,12 Q385,18 390,12 Q395,6 400,12 L400,0 Z' fill='black'/%3E%3C/svg%3E");
+        mask-size: 100% 100%;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,12 Q5,18 10,12 Q15,6 20,12 Q25,18 30,12 Q35,6 40,12 Q45,18 50,12 Q55,6 60,12 Q65,18 70,12 Q75,6 80,12 Q85,18 90,12 Q95,6 100,12 Q105,18 110,12 Q115,6 120,12 Q125,18 130,12 Q135,6 140,12 Q145,18 150,12 Q155,6 160,12 Q165,18 170,12 Q175,6 180,12 Q185,18 190,12 Q195,6 200,12 Q205,18 210,12 Q215,6 220,12 Q225,18 230,12 Q235,6 240,12 Q245,18 250,12 Q255,6 260,12 Q265,18 270,12 Q275,6 280,12 Q285,18 290,12 Q295,6 300,12 Q305,18 310,12 Q315,6 320,12 Q325,18 330,12 Q335,6 340,12 Q345,18 350,12 Q355,6 360,12 Q365,18 370,12 Q375,6 380,12 Q385,18 390,12 Q395,6 400,12 L400,0 Z' fill='black'/%3E%3C/svg%3E");
+        -webkit-mask-size: 100% 100%;
       }
 
-      /* --- Header --- */
-
-      header {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0.5rem 0.5rem 0;
-        position: relative;
+      /* Subtle paper texture via noise */
+      .receipt::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
         z-index: 1;
       }
 
-      header h1 {
-        font-size: 2.4rem;
+      .receipt > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* --- Dashed separators --- */
+
+      .dashes {
+        border: none;
+        border-top: 1.5px dashed var(--rule);
+        margin: 1rem 0;
+      }
+
+      .dashes--tight {
+        margin: 0.5rem 0;
+      }
+
+      .double-line {
+        border: none;
+        border-top: 1.5px solid var(--ink);
+        margin: 0.75rem 0 0.1rem;
+        position: relative;
+      }
+
+      .double-line::after {
+        content: '';
+        display: block;
+        border-top: 1.5px solid var(--ink);
+        margin-top: 3px;
+      }
+
+      /* --- Header / Store Name --- */
+
+      .receipt-header {
+        text-align: center;
+        padding-bottom: 0.25rem;
+      }
+
+      .receipt-header h1 {
+        font-size: 2rem;
         font-weight: 700;
-        letter-spacing: -0.03em;
+        letter-spacing: 0.3em;
         text-transform: uppercase;
         line-height: 1;
+        margin-bottom: 0.25rem;
       }
 
-      header h1 span {
-        color: var(--red);
+      .receipt-header .subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--faded);
       }
 
-      /* --- Main --- */
-
-      main {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 0.5rem;
-        position: relative;
-        z-index: 1;
+      .receipt-header .address {
+        font-size: 0.65rem;
+        color: var(--faded);
+        margin-top: 0.5rem;
+        line-height: 1.6;
       }
 
-      /* --- Post List --- */
+      /* --- Receipt info line --- */
+
+      .receipt-info {
+        font-size: 0.7rem;
+        display: flex;
+        justify-content: space-between;
+        color: var(--faded);
+      }
+
+      /* --- Post List (as line items) --- */
 
       .posts {
         list-style: none;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 0;
       }
 
       .post {
-        padding: 0.5rem;
-        border-bottom: 1px solid var(--light-gray);
+        padding: 0.75rem 0;
+        border-bottom: 1px dotted var(--rule);
       }
 
       .post:last-child {
         border-bottom: none;
       }
 
-      @media (max-width: 600px) {
-        .posts {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .post-meta {
+      .item-row {
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        align-items: baseline;
         gap: 0.5rem;
-        margin-bottom: 0.25rem;
       }
 
-      .post time {
-        font-size: 0.7rem;
-        color: var(--gray);
+      .item-name {
+        font-size: 0.85rem;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.04em;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .item-name a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .item-name a::after {
+        content: ' \2197';
+      }
+
+      .item-name a:hover {
+        text-decoration: underline;
+      }
+
+      .item-price {
+        font-size: 0.85rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .item-details {
+        font-size: 0.7rem;
+        color: var(--faded);
+        margin-top: 0.15rem;
       }
 
       .tag {
@@ -163,47 +208,18 @@
         font-size: 0.6rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        padding: 0.1rem 0.4rem;
-        border: 1.5px solid;
-      }
-
-      .tag--red {
-        color: var(--red);
-        border-color: var(--red);
-      }
-
-      .tag--blue {
-        color: var(--blue);
-        border-color: var(--blue);
-      }
-
-      .tag--yellow {
-        color: hsl(48, 70%, 25%);
-        border-color: var(--yellow);
-      }
-
-      .post h2 {
-        font-size: 1.15rem;
-        font-weight: 700;
-        line-height: 1.3;
-        letter-spacing: -0.01em;
-      }
-
-      .post h2 a {
-        color: var(--black);
-      }
-
-      .post h2 a:hover {
-        color: var(--blue);
-        text-decoration: none;
+        letter-spacing: 0.1em;
+        padding: 0.05rem 0.35rem;
+        border: 1px solid var(--ink);
+        margin-left: 0.25rem;
+        vertical-align: middle;
       }
 
       .post-body {
-        margin-top: 0.25rem;
-        font-size: 0.85rem;
-        color: var(--gray);
-        line-height: 1.6;
+        margin-top: 0.4rem;
+        font-size: 0.72rem;
+        color: var(--faded);
+        line-height: 1.55;
       }
 
       .post-body p {
@@ -215,7 +231,7 @@
       }
 
       .post-body strong {
-        color: var(--black);
+        color: var(--ink);
         font-weight: 700;
       }
 
@@ -224,18 +240,18 @@
       }
 
       .post-body code {
-        background: hsl(40, 20%, 82%);
-        padding: 0.1rem 0.3rem;
-        font-size: 0.8rem;
+        background: rgba(0, 0, 0, 0.06);
+        padding: 0.05rem 0.25rem;
+        font-size: 0.68rem;
       }
 
       .post-body pre {
-        background: var(--black);
-        color: var(--white);
-        padding: 0.75rem;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 0.6rem;
         overflow-x: auto;
-        margin-bottom: 0.25rem;
-        font-size: 0.78rem;
+        margin: 0.25rem 0;
+        font-size: 0.65rem;
         line-height: 1.5;
       }
 
@@ -247,27 +263,46 @@
       }
 
       .post-body blockquote {
-        border-left: 3px solid var(--red);
+        border-left: 2px solid var(--ink);
         padding-left: 0.5rem;
-        margin-bottom: 0.25rem;
+        margin: 0.25rem 0;
         font-style: italic;
       }
 
       .post-body ul {
-        list-style-position: inside;
+        list-style: none;
         padding-left: 0;
         margin-bottom: 0.25rem;
       }
 
+      .post-body li::before {
+        content: '- ';
+      }
+
       .post-body li {
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.15rem;
+      }
+
+      /* --- Totals --- */
+
+      .totals {
+        font-size: 0.8rem;
+      }
+
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .total-row--grand {
+        font-weight: 700;
+        font-size: 1rem;
       }
 
       /* --- Post View --- */
 
       .post-view {
         display: none;
-        max-width: 60ch;
       }
 
       .post-view.active {
@@ -278,23 +313,24 @@
         font-size: 0.7rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--gray);
+        letter-spacing: 0.1em;
+        color: var(--faded);
         cursor: pointer;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
         display: inline-block;
-      }
-
-      .post-view .back:hover {
-        color: var(--red);
         text-decoration: none;
       }
 
+      .post-view .back:hover {
+        color: var(--ink);
+      }
+
       .post-view h2 {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
         font-weight: 700;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1.3;
         margin-bottom: 0.25rem;
       }
 
@@ -302,92 +338,168 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.7rem;
+        color: var(--faded);
       }
 
       .posts.hidden {
         display: none;
       }
 
-      /* --- Footer --- */
+      /* --- Barcode --- */
 
-      footer {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 1.125rem 0.5rem 0.5rem;
-        text-align: left;
-        font-size: 0.7rem;
-        color: var(--gray);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        position: relative;
-        z-index: 1;
+      .barcode {
+        text-align: center;
+        padding: 1rem 0 0.5rem;
       }
 
-      footer::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0.5rem;
-        right: 0.5rem;
-        height: 2px;
-        border-radius: 1px;
-        background: linear-gradient(
-          to right,
-          var(--black) 0%,
-          var(--black) 11.1%,
-          var(--yellow) 11.1%,
-          var(--yellow) 27.8%,
-          var(--blue) 27.8%,
-          var(--blue) 55.6%,
-          var(--red) 55.6%,
-          var(--red) 100%
-        );
+      .barcode-lines {
+        display: flex;
+        justify-content: center;
+        gap: 1px;
+        height: 48px;
+        margin-bottom: 0.4rem;
+      }
+
+      .barcode-lines span {
+        display: inline-block;
+        background: var(--ink);
+        height: 100%;
+      }
+
+      .barcode-number {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: var(--faded);
+      }
+
+      /* --- Footer --- */
+
+      .receipt-footer {
+        text-align: center;
+        padding: 0.75rem 0 1.5rem;
+        font-size: 0.65rem;
+        color: var(--faded);
+        letter-spacing: 0.05em;
+        line-height: 1.8;
+      }
+
+      .receipt-footer .thank-you {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 440px) {
+        .receipt {
+          max-width: 100%;
+          padding: 1.5rem 1rem 0;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="grid-lines">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
+    <div class="receipt">
+      <header class="receipt-header">
+        <h1>BLOC</h1>
+        <div class="subtitle">Personal Blog</div>
+        <div class="address">
+          github.com/dfxe<br />
+          the internet
+        </div>
+      </header>
+
+      <hr class="dashes" />
+
+      <div class="receipt-info">
+        <span>DATE: 29 MAR 2026</span>
+        <span>TXN #0001</span>
+      </div>
+      <div class="receipt-info">
+        <span>DEVELOPER: DFXE</span>
+        <span>REG #01</span>
+      </div>
+
+      <hr class="dashes" />
+
+      <main>
+        <article class="post-view" id="post-view"></article>
+
+        <ul class="posts">
+          <li class="post">
+            <div class="item-row">
+              <span class="item-name"><a href="#">Your title here</a></span>
+              <span class="item-price"></span>
+            </div>
+            <div class="item-details">
+              <time datetime="2026-02-25">25 FEB 2026</time>
+              <span class="tag">Draft</span>
+            </div>
+            <script type="text/markdown">
+              This is a placeholder post. Replace it with your own writing.
+
+              You can use **bold**, *italic*, and `inline code`.
+
+              - First point goes here
+              - Second point goes here
+              - Third point goes here
+
+              > A quote that matters to you.
+
+              Write something worth reading, or do something worth writing.
+            </script>
+          </li>
+        </ul>
+
+        <hr class="double-line" />
+
+        <div class="totals">
+          <div class="total-row">
+            <span>ITEMS</span>
+            <span id="total-items">1</span>
+          </div>
+          <hr class="dashes dashes--tight" />
+          <div class="total-row total-row--grand">
+            <span>TOTAL</span>
+            <span id="total-time">~1 min</span>
+          </div>
+        </div>
+      </main>
+
+      <hr class="dashes" />
+
+      <div class="barcode">
+        <div class="barcode-lines" id="barcode"></div>
+        <div class="barcode-number">0 26329 01001 7</div>
+      </div>
+
+      <footer class="receipt-footer">
+        <div class="thank-you">Thank you!</div>
+        <div>Items can be returned within<br />30 git commits with receipt</div>
+        <br />
+        <div>2026 &mdash; dfxe</div>
+      </footer>
     </div>
 
-    <header>
-      <h1>BL<span>OC</span></h1>
-    </header>
-
-    <main>
-      <article class="post-view" id="post-view"></article>
-
-      <ul class="posts">
-        <li class="post">
-          <div class="post-meta">
-            <time datetime="2026-02-25">25 Feb 2026</time>
-            <span class="tag tag--red">Draft</span>
-          </div>
-          <h2><a href="#">Your title here</a></h2>
-          <script type="text/markdown">
-            This is a placeholder post. Replace it with your own writing.
-
-            You can use **bold**, *italic*, and `inline code`.
-
-            - First point goes here
-            - Second point goes here
-            - Third point goes here
-
-            > A quote that matters to you.
-
-            Write something worth reading, or do something worth writing.
-          </script>
-        </li>
-      </ul>
-    </main>
-
-    <footer>2026 — dfxe</footer>
-
     <script>
+      // Generate barcode
+      (function () {
+        var bc = document.getElementById('barcode');
+        var pattern = [3,1,2,1,1,3,2,1,3,1,1,2,1,1,3,2,1,1,2,3,1,1,2,1,3,1,2,1,1,3,1,2,1,1,2,3,1,1,3,1,2,1,1,2,1,3,2,1,1,3,1,2,2,1,1,3,1,2,1,1,3,2];
+        for (var i = 0; i < pattern.length; i++) {
+          var s = document.createElement('span');
+          s.style.width = pattern[i] + 'px';
+          if (i % 2 === 1) s.style.background = 'transparent';
+          bc.appendChild(s);
+        }
+      })();
+
+      // Markdown parser
       function esc(t) {
         return t
           .replace(/&/g, '&amp;')
@@ -455,7 +567,7 @@
         return html;
       }
 
-      // render markdown in post list
+      // Render markdown
       document
         .querySelectorAll('script[type="text/markdown"]')
         .forEach(function (s) {
@@ -465,36 +577,58 @@
           s.parentNode.replaceChild(div, s);
         });
 
-      // post view
+      // Calculate read times (~200 words per minute)
+      (function () {
+        var totalMinutes = 0;
+        document.querySelectorAll('.post').forEach(function (post) {
+          var body = post.querySelector('.post-body');
+          var words = body ? body.textContent.trim().split(/\s+/).length : 0;
+          var mins = Math.max(1, Math.ceil(words / 200));
+          totalMinutes += mins;
+          var priceEl = post.querySelector('.item-price');
+          if (priceEl) priceEl.textContent = '~' + mins + ' min';
+        });
+        var count = document.querySelectorAll('.post').length;
+        document.getElementById('total-items').textContent = count;
+        document.getElementById('total-time').textContent = '~' + totalMinutes + ' min';
+      })();
+
+      // Post view navigation
       var postList = document.querySelector('.posts');
       var postView = document.getElementById('post-view');
+      var totalsSection = document.querySelector('.totals');
+      var doubleLine = document.querySelector('.double-line');
 
-      document.querySelectorAll('.post h2 a').forEach(function (a) {
+      document.querySelectorAll('.item-name a').forEach(function (a) {
         a.addEventListener('click', function (e) {
           e.preventDefault();
           var post = a.closest('.post');
           var title = a.textContent;
-          var meta = post.querySelector('.post-meta').innerHTML;
+          var details = post.querySelector('.item-details').innerHTML;
           var body = post.querySelector('.post-body').innerHTML;
           postView.innerHTML =
-            '<a class="back" href="#">&larr; Back</a>' +
+            '<a class="back" href="#">&larr; BACK</a>' +
             '<h2>' +
             title +
             '</h2>' +
             '<div class="post-view-meta">' +
-            meta +
+            details +
             '</div>' +
             '<div class="post-body">' +
             body +
             '</div>';
           postList.classList.add('hidden');
           postView.classList.add('active');
+          totalsSection.style.display = 'none';
+          doubleLine.style.display = 'none';
           postView
             .querySelector('.back')
             .addEventListener('click', function (e) {
               e.preventDefault();
               postView.classList.remove('active');
               postList.classList.remove('hidden');
+              totalsSection.style.display = '';
+              doubleLine.style.display = '';
             });
         });
       });
