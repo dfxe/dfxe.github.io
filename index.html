@@ -110,18 +110,46 @@
                 justify-content: space-between;
                 align-items: baseline;
                 gap: 1rem;
-                flex-wrap: wrap;
             }
 
             .drop-title {
                 font-family: "Unbounded", sans-serif;
                 font-weight: 400;
                 font-size: clamp(2rem, 7vw, 5rem);
-                line-height: 0.95;
+                line-height: 1.15;
                 letter-spacing: -0.03em;
                 text-transform: uppercase;
                 flex: 1;
                 min-width: 0;
+                text-align: right;
+                white-space: nowrap;
+                clip-path: inset(0 0 -0.4em 0);
+            }
+
+            .drop-title-inner {
+                display: inline-block;
+            }
+
+            .drop-title.is-ticker .drop-title-inner {
+                padding-left: 100%;
+                animation: drop-title-ticker 14s linear infinite;
+                will-change: transform;
+            }
+
+            @keyframes drop-title-ticker {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .drop-title.is-ticker .drop-title-inner {
+                    animation: none;
+                    padding-left: 0;
+                }
             }
 
             .drop-title .drop-num {
@@ -369,8 +397,10 @@
                     <a class="drop-link" href="#">
                         <div class="drop-heading">
                             <h2 class="drop-title">
-                                <span class="drop-num">#001</span>Your title
-                                here
+                                <span class="drop-title-inner"
+                                    ><span class="drop-num">#001</span>Your
+                                    title here</span
+                                >
                             </h2>
                             <span class="drop-arrow">→</span>
                         </div>
@@ -393,7 +423,10 @@
                 <li class="drop" aria-disabled="true">
                     <div class="drop-heading">
                         <h2 class="drop-title">
-                            <span class="drop-num">#002</span>Untitled Draft
+                            <span class="drop-title-inner"
+                                ><span class="drop-num">#002</span>Untitled
+                                Draft</span
+                            >
                         </h2>
                     </div>
                 </li>
@@ -637,6 +670,26 @@
                 if (match && postsBySlug[match[1]]) {
                     var entry = postsBySlug[match[1]];
                     showPost(entry.drop, false);
+                }
+            })();
+
+            // Title ticker: enable when text overflows its container
+            (function () {
+                var titles = document.querySelectorAll(".drop-title");
+                function check() {
+                    titles.forEach(function (t) {
+                        var inner = t.querySelector(".drop-title-inner");
+                        if (!inner) return;
+                        t.classList.remove("is-ticker");
+                        if (inner.scrollWidth > t.clientWidth + 1) {
+                            t.classList.add("is-ticker");
+                        }
+                    });
+                }
+                check();
+                window.addEventListener("resize", check);
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(check);
                 }
             })();
         </script>
