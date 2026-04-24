@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>BLOC</title>
         <style>
-            @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Unbounded:wght@400;600;700;800;900&display=swap");
 
             *,
             *::before,
@@ -16,295 +16,155 @@
             }
 
             :root {
-                --ink: #1a1a1a;
-                --paper: #f5f0e8;
-                --faded: #6b6560;
-                --rule: #c8c0b4;
-                --receipt-width: 400px;
+                --ink: #000;
+                --paper: #f2efe9;
+                --accent: #ff3b00;
+                --faded: #8a8780;
             }
 
             html {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             body {
-                font-family: "Space Mono", "Courier New", Courier, monospace;
-                background-color: #d4cfc7;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
-                background-attachment: fixed;
+                font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica,
+                    Arial, sans-serif;
+                background: var(--paper);
                 color: var(--ink);
-                line-height: 1.5;
-                display: flex;
-                justify-content: center;
-                min-height: 100vh;
-                padding: 2rem 1rem;
-            }
-
-            .receipt {
-                background: var(--paper);
-                width: 100%;
-                max-width: var(--receipt-width);
-                padding: 2rem 1.5rem 0;
-                position: relative;
-                box-shadow:
-                    0 2px 20px rgba(0, 0, 0, 0.15),
-                    0 0 0 1px rgba(0, 0, 0, 0.04);
-            }
-
-            /* Torn bottom edge */
-            .receipt::after {
-                content: "";
-                display: block;
-                width: 100%;
-                height: 24px;
-                position: relative;
-                left: 0;
-                background: var(--paper);
-                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,12 Q5,18 10,12 Q15,6 20,12 Q25,18 30,12 Q35,6 40,12 Q45,18 50,12 Q55,6 60,12 Q65,18 70,12 Q75,6 80,12 Q85,18 90,12 Q95,6 100,12 Q105,18 110,12 Q115,6 120,12 Q125,18 130,12 Q135,6 140,12 Q145,18 150,12 Q155,6 160,12 Q165,18 170,12 Q175,6 180,12 Q185,18 190,12 Q195,6 200,12 Q205,18 210,12 Q215,6 220,12 Q225,18 230,12 Q235,6 240,12 Q245,18 250,12 Q255,6 260,12 Q265,18 270,12 Q275,6 280,12 Q285,18 290,12 Q295,6 300,12 Q305,18 310,12 Q315,6 320,12 Q325,18 330,12 Q335,6 340,12 Q345,18 350,12 Q355,6 360,12 Q365,18 370,12 Q375,6 380,12 Q385,18 390,12 Q395,6 400,12 L400,0 Z' fill='black'/%3E%3C/svg%3E");
-                mask-size: 100% 100%;
-                -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,12 Q5,18 10,12 Q15,6 20,12 Q25,18 30,12 Q35,6 40,12 Q45,18 50,12 Q55,6 60,12 Q65,18 70,12 Q75,6 80,12 Q85,18 90,12 Q95,6 100,12 Q105,18 110,12 Q115,6 120,12 Q125,18 130,12 Q135,6 140,12 Q145,18 150,12 Q155,6 160,12 Q165,18 170,12 Q175,6 180,12 Q185,18 190,12 Q195,6 200,12 Q205,18 210,12 Q215,6 220,12 Q225,18 230,12 Q235,6 240,12 Q245,18 250,12 Q255,6 260,12 Q265,18 270,12 Q275,6 280,12 Q285,18 290,12 Q295,6 300,12 Q305,18 310,12 Q315,6 320,12 Q325,18 330,12 Q335,6 340,12 Q345,18 350,12 Q355,6 360,12 Q365,18 370,12 Q375,6 380,12 Q385,18 390,12 Q395,6 400,12 L400,0 Z' fill='black'/%3E%3C/svg%3E");
-                -webkit-mask-size: 100% 100%;
-            }
-
-            /* Subtle paper texture via noise */
-            .receipt::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-                pointer-events: none;
-                z-index: 1;
-            }
-
-            .receipt > * {
-                position: relative;
-                z-index: 2;
-            }
-
-            /* --- Dashed separators --- */
-
-            .dashes {
-                border: none;
-                border-top: 1.5px dashed var(--rule);
-                margin: 1rem 0;
-            }
-
-            .dashes--tight {
-                margin: 0.5rem 0;
-            }
-
-            .double-line {
-                border: none;
-                border-top: 1.5px solid var(--ink);
-                margin: 0.75rem 0 0.1rem;
-                position: relative;
-            }
-
-            .double-line::after {
-                content: "";
-                display: block;
-                border-top: 1.5px solid var(--ink);
-                margin-top: 3px;
-            }
-
-            /* --- Header / Store Name --- */
-
-            .receipt-header {
-                text-align: center;
-                padding-bottom: 0.25rem;
-            }
-
-            .receipt-header h1 {
-                font-size: 2rem;
-                font-weight: 700;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
                 line-height: 1;
-                margin-bottom: 0.25rem;
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
+                overflow-x: hidden;
             }
 
-            .receipt-header .subtitle {
-                font-size: 0.7rem;
-                letter-spacing: 0.15em;
+            a {
+                color: inherit;
+                text-decoration: underline wavy;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 4px;
+            }
+
+            /* --- Marquee header --- */
+
+            .marquee {
+                overflow: hidden;
+                white-space: nowrap;
+                padding: 0.5rem 0;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: 0.95rem;
+                letter-spacing: 0.02em;
                 text-transform: uppercase;
-                color: var(--faded);
             }
 
-            .receipt-header .address {
-                font-size: 0.65rem;
-                color: var(--faded);
-                margin-top: 0.5rem;
-                line-height: 1.6;
+            .marquee-track {
+                display: inline-block;
+                animation: marquee 40s linear infinite;
+                padding-left: 100%;
             }
 
-            /* --- Receipt info line --- */
-
-            .receipt-info {
-                font-size: 0.7rem;
-                display: flex;
-                justify-content: space-between;
-                color: var(--faded);
+            .marquee-track span {
+                margin-right: 3rem;
             }
 
-            /* --- Post List (as line items) --- */
+            .marquee-track span::before {
+                content: "◆ ";
+                color: var(--accent);
+            }
 
-            .posts {
+            @keyframes marquee {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            /* --- Hero --- */
+
+            /* --- Drops --- */
+
+            .drops {
                 list-style: none;
             }
 
-            .post {
-                padding: 0.75rem 0;
-                border-bottom: 1px dotted var(--rule);
+            .drop {
+                padding: 1.5rem 1.5rem 2rem;
+                position: relative;
+                transition: background 0.15s ease;
             }
 
-            .post:last-child {
-                border-bottom: none;
+            .drop:hover {
+                background: var(--ink);
+                color: var(--paper);
             }
 
-            .item-row {
+            .drop a.drop-link {
+                display: block;
+                color: inherit;
+            }
+
+            .drop-heading {
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
-                gap: 0.5rem;
+                gap: 1rem;
+                flex-wrap: wrap;
             }
 
-            .item-name {
-                font-size: 0.85rem;
-                font-weight: 700;
+            .drop-title {
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: clamp(2rem, 7vw, 5rem);
+                line-height: 0.95;
+                letter-spacing: -0.03em;
                 text-transform: uppercase;
-                letter-spacing: 0.04em;
                 flex: 1;
                 min-width: 0;
             }
 
-            .item-name a {
-                color: var(--ink);
-                text-decoration: none;
+            .drop-title .drop-num {
+                color: var(--accent);
+                margin-right: 0.4em;
             }
 
-            .item-name a::after {
-                content: " \2197";
-            }
-
-            .item-name a:hover {
-                text-decoration: underline;
-            }
-
-            .item-price {
-                font-size: 0.85rem;
-                font-weight: 700;
-                white-space: nowrap;
-            }
-
-            .item-details {
-                font-size: 0.7rem;
-                color: var(--faded);
-                margin-top: 0.15rem;
-            }
-
-            .tag {
-                display: inline-block;
-                font-size: 0.6rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                padding: 0.05rem 0.35rem;
-                border: 1px solid var(--ink);
-                margin-left: 0.25rem;
-                vertical-align: middle;
-            }
-
-            .post-body {
-                margin-top: 0.4rem;
-                font-size: 0.72rem;
-                color: var(--faded);
-                line-height: 1.55;
-            }
-
-            .post-body p {
-                margin-bottom: 0.25rem;
-            }
-
-            .post-body p:last-child {
-                margin-bottom: 0;
-            }
-
-            .post-body strong {
-                color: var(--ink);
-                font-weight: 700;
-            }
-
-            .post-body em {
-                font-style: italic;
-            }
-
-            .post-body code {
-                background: rgba(0, 0, 0, 0.06);
-                padding: 0.05rem 0.25rem;
-                font-size: 0.68rem;
-            }
-
-            .post-body pre {
-                background: var(--ink);
+            .drop:hover .drop-title .drop-num {
                 color: var(--paper);
-                padding: 0.6rem;
-                overflow-x: auto;
-                margin: 0.25rem 0;
-                font-size: 0.65rem;
-                line-height: 1.5;
             }
 
-            .post-body pre code {
-                background: none;
-                padding: 0;
-                color: inherit;
-                font-size: inherit;
+            .drop-arrow {
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: clamp(1.6rem, 5vw, 3rem);
+                line-height: 1;
+                flex-shrink: 0;
             }
 
-            .post-body blockquote {
-                border-left: 2px solid var(--ink);
-                padding-left: 0.5rem;
-                margin: 0.25rem 0;
-                font-style: italic;
+            .drop[aria-disabled="true"] {
+                cursor: not-allowed;
             }
 
-            .post-body ul {
-                list-style: none;
-                padding-left: 0;
-                margin-bottom: 0.25rem;
+            .drop[aria-disabled="true"]:hover {
+                background: var(--paper);
+                color: var(--ink);
             }
 
-            .post-body li::before {
-                content: "- ";
+            .drop[aria-disabled="true"] .drop-title {
+                color: var(--faded);
             }
 
-            .post-body li {
-                margin-bottom: 0.15rem;
+            .drop[aria-disabled="true"] .drop-title .drop-num {
+                color: var(--faded);
             }
 
-            /* --- Totals --- */
-
-            .totals {
-                font-size: 0.8rem;
-            }
-
-            .total-row {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .total-row--grand {
-                font-weight: 700;
-                font-size: 1rem;
-            }
-
-            /* --- Post View --- */
+            /* --- Post view --- */
 
             .post-view {
                 display: none;
+                padding: 2rem 1.5rem 4rem;
+                max-width: 800px;
+                margin: 0 auto;
             }
 
             .post-view.active {
@@ -312,603 +172,243 @@
             }
 
             .post-view .back {
-                font-size: 0.7rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                color: var(--faded);
-                cursor: pointer;
-                margin-bottom: 0.75rem;
                 display: inline-block;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: 0.85rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                border: 2px solid var(--ink);
+                padding: 0.35rem 0.7rem;
+                margin-bottom: 2rem;
                 text-decoration: none;
             }
 
             .post-view .back:hover {
-                color: var(--ink);
+                background: var(--ink);
+                color: var(--paper);
             }
 
             .post-view h2 {
-                font-size: 1.1rem;
-                font-weight: 700;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: clamp(2rem, 6vw, 4.5rem);
+                line-height: 0.92;
+                letter-spacing: -0.03em;
                 text-transform: uppercase;
-                letter-spacing: 0.04em;
-                line-height: 1.3;
-                margin-bottom: 0.25rem;
+                margin-bottom: 1rem;
             }
 
             .post-view .post-view-meta {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 0.75rem;
-                font-size: 0.7rem;
-                color: var(--faded);
-            }
-
-            .posts.hidden {
-                display: none;
-            }
-
-            /* --- Barcode --- */
-
-            .barcode {
-                text-align: center;
-                padding: 1rem 0 0.5rem;
-            }
-
-            .barcode-lines {
-                display: flex;
-                justify-content: center;
-                gap: 1px;
-                height: 48px;
-                margin-bottom: 0.4rem;
-            }
-
-            .barcode-lines span {
-                display: inline-block;
-                background: var(--ink);
-                height: 100%;
-            }
-
-            .barcode-number {
-                font-size: 0.6rem;
-                letter-spacing: 0.2em;
-                color: var(--faded);
-            }
-
-            /* --- Footer --- */
-
-            .receipt-footer {
-                text-align: center;
-                padding: 0.75rem 0 1.5rem;
-                font-size: 0.65rem;
-                color: var(--faded);
-                letter-spacing: 0.05em;
-                line-height: 1.8;
-            }
-
-            .receipt-footer .thank-you {
-                font-size: 0.9rem;
-                font-weight: 700;
-                letter-spacing: 0.2em;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: 0.8rem;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
-                color: var(--ink);
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid var(--ink);
+            }
+
+            .post-view .post-view-meta .tag {
+                display: inline-block;
+                border: 2px solid var(--ink);
+                padding: 0.2rem 0.5rem;
+                margin-left: 0.5rem;
+            }
+
+            .post-body {
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-weight: 400;
+                font-size: 1.05rem;
+                line-height: 1.55;
+            }
+
+            .post-body p {
+                margin-bottom: 1rem;
+            }
+
+            .post-body strong {
+                font-weight: 800;
+            }
+
+            .post-body em {
+                font-style: italic;
+            }
+
+            .post-body a:hover {
+                color: var(--accent);
+            }
+
+            .post-body code {
+                font-family: "Courier New", monospace;
+                background: var(--ink);
+                color: var(--paper);
+                padding: 0.1rem 0.35rem;
+                font-size: 0.9em;
+            }
+
+            .post-body pre {
+                background: var(--ink);
+                color: var(--paper);
+                padding: 1rem;
+                overflow-x: auto;
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .post-body pre code {
+                background: none;
+                padding: 0;
+            }
+
+            .post-body blockquote {
+                border-left: 6px solid var(--ink);
+                padding: 0.25rem 0 0.25rem 1rem;
+                margin: 1rem 0;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: 1.3rem;
+                line-height: 1.15;
+                text-transform: uppercase;
+                letter-spacing: -0.01em;
+            }
+
+            .post-body ul {
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 1rem;
+            }
+
+            .post-body li {
+                padding-left: 1.5rem;
+                position: relative;
                 margin-bottom: 0.5rem;
             }
 
-            /* --- Monster --- */
-
-            .monster {
-                display: flex;
-                justify-content: center;
-                padding: 0 0 1rem;
-                margin-top: -0.5rem;
-            }
-
-            .monster-svg {
-                width: 52px;
-                height: 52px;
-                overflow: visible;
-                cursor: pointer;
-                animation: monster-bob 3.2s ease-in-out infinite;
-            }
-
-            .monster-svg.monster-click {
-                animation: monster-jump 0.55s cubic-bezier(0.5, -0.3, 0.4, 1.4);
-            }
-
-            .monster-bubble {
+            .post-body li::before {
+                content: "■";
                 position: absolute;
-                bottom: calc(100% - 4px);
-                left: 50%;
-                background: var(--ink);
-                color: var(--paper);
-                font-family: inherit;
-                font-size: 0.65rem;
-                font-weight: 700;
-                letter-spacing: 0.15em;
+                left: 0;
+                color: var(--accent);
+            }
+
+            .post-body h1,
+            .post-body h2,
+            .post-body h3 {
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
                 text-transform: uppercase;
-                padding: 0.3rem 0.55rem;
-                white-space: nowrap;
-                pointer-events: none;
-                transform-origin: center bottom;
-                animation: monster-bubble-anim 1.6s ease forwards;
-                z-index: 3;
+                letter-spacing: -0.02em;
+                margin: 1.5rem 0 0.75rem;
             }
 
-            .monster-bubble::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -4px;
-                border: 4px solid transparent;
-                border-top-color: var(--ink);
-                border-bottom: 0;
+            .drops.hidden {
+                display: none;
             }
 
-            .monster-body,
-            .monster-dot,
-            .monster-foot,
-            .monster-pupil {
-                fill: var(--ink);
+            body.reading .hero,
+            body.reading .marquee,
+            body.reading .footer-strip {
+                display: none;
             }
 
-            .monster-stem {
-                stroke: var(--ink);
-                stroke-width: 1.5;
-                stroke-linecap: round;
-                fill: none;
+            /* --- Footer strip --- */
+
+            .footer-strip {
+                padding: 2rem 1.5rem;
+                font-family: "Unbounded", sans-serif;
+                font-weight: 900;
+                font-size: 0.8rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
-            .monster-eye-white {
-                fill: var(--paper);
+            .footer-strip a:hover {
+                color: var(--accent);
             }
 
-            .monster-mouth {
-                stroke: var(--paper);
-                stroke-width: 1.5;
-                stroke-linecap: round;
-                fill: none;
-            }
-
-            .monster-eye {
-                transform-box: fill-box;
-                transform-origin: center;
-                animation: monster-blink 5.3s ease-in-out infinite;
-            }
-
-            .monster-eye--right {
-                animation-delay: 0.04s;
-            }
-
-            .monster-pupil {
-                transform-box: fill-box;
-                transform-origin: center;
-                animation: monster-look 7.1s ease-in-out infinite;
-            }
-
-            .monster-antenna--left {
-                transform-box: view-box;
-                transform-origin: 24px 22px;
-                animation: monster-wiggle-left 3.7s ease-in-out infinite;
-            }
-
-            .monster-antenna--right {
-                transform-box: view-box;
-                transform-origin: 36px 22px;
-                animation: monster-wiggle-right 4.1s ease-in-out infinite;
-            }
-
-            .monster-foot {
-                transform-box: fill-box;
-                transform-origin: center;
-            }
-
-            .monster-foot--left {
-                animation: monster-tap 1.4s ease-in-out infinite;
-            }
-
-            .monster-foot--right {
-                animation: monster-tap 1.4s ease-in-out infinite;
-                animation-delay: 0.7s;
-            }
-
-            @keyframes monster-bob {
-                0%,
-                100% {
-                    transform: translateY(0);
-                }
-                50% {
-                    transform: translateY(-3px);
-                }
-            }
-
-            @keyframes monster-jump {
-                0%,
-                100% {
-                    transform: translateY(0) scale(1, 1);
-                }
-                10% {
-                    transform: translateY(0) scale(1.15, 0.85);
-                }
-                40% {
-                    transform: translateY(-14px) scale(0.95, 1.1);
-                }
-                70% {
-                    transform: translateY(0) scale(1.1, 0.92);
-                }
-                85% {
-                    transform: translateY(-2px) scale(1, 1);
-                }
-            }
-
-            @keyframes monster-bubble-anim {
-                0% {
-                    opacity: 0;
-                    transform: translate(-50%, 6px) scale(0.6);
-                }
-                20% {
-                    opacity: 1;
-                    transform: translate(-50%, 0) scale(1);
-                }
-                75% {
-                    opacity: 1;
-                    transform: translate(-50%, 0) scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translate(-50%, -4px) scale(0.95);
-                }
-            }
-
-            @keyframes monster-blink {
-                0%,
-                93%,
-                98%,
-                100% {
-                    transform: scaleY(1);
-                }
-                95%,
-                96% {
-                    transform: scaleY(0.1);
-                }
-            }
-
-            @keyframes monster-wiggle-left {
-                0%,
-                100% {
-                    transform: rotate(-10deg);
-                }
-                50% {
-                    transform: rotate(4deg);
-                }
-            }
-
-            @keyframes monster-wiggle-right {
-                0%,
-                100% {
-                    transform: rotate(10deg);
-                }
-                50% {
-                    transform: rotate(-4deg);
-                }
-            }
-
-            @keyframes monster-look {
-                0%,
-                25%,
-                100% {
-                    transform: translate(0, 0);
-                }
-                35%,
-                45% {
-                    transform: translate(-1.5px, 0);
-                }
-                55%,
-                65% {
-                    transform: translate(1.5px, 0);
-                }
-                75%,
-                85% {
-                    transform: translate(0, -0.5px);
-                }
-            }
-
-            @keyframes monster-tap {
-                0%,
-                50%,
-                100% {
-                    transform: translateY(0);
-                }
-                25% {
-                    transform: translateY(-1.5px);
+            @media (max-width: 600px) {
+                .drop,
+                .footer-strip {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
                 }
             }
 
             @media (prefers-reduced-motion: reduce) {
-                .monster-svg,
-                .monster-eye,
-                .monster-pupil,
-                .monster-antenna--left,
-                .monster-antenna--right,
-                .monster-foot--left,
-                .monster-foot--right {
+                .marquee-track {
                     animation: none;
-                }
-            }
-
-            /* --- View Transitions --- */
-
-            .receipt {
-                view-transition-name: receipt;
-                transition:
-                    max-width 0.4s ease,
-                    padding 0.4s ease,
-                    box-shadow 0.4s ease;
-            }
-
-            .receipt.expanded {
-                max-width: 720px;
-                box-shadow: none;
-            }
-
-            .receipt.expanded::after {
-                display: none;
-            }
-
-            .receipt.expanded > :not(main) {
-                display: none;
-            }
-
-            .post-view.active {
-                view-transition-name: post-content;
-            }
-
-            ::view-transition-old(receipt) {
-                animation: shrink-out 0.35s ease forwards;
-            }
-
-            ::view-transition-new(receipt) {
-                animation: grow-in 0.35s ease forwards;
-            }
-
-            ::view-transition-old(post-content) {
-                animation: fade-scale-out 0.3s ease forwards;
-            }
-
-            ::view-transition-new(post-content) {
-                animation: fade-scale-in 0.35s ease 0.05s both;
-            }
-
-            @keyframes grow-in {
-                from {
-                    transform: scale(0.92);
-                    opacity: 0.6;
-                }
-                to {
-                    transform: scale(1);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes shrink-out {
-                from {
-                    transform: scale(1);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(0.92);
-                    opacity: 0.6;
-                }
-            }
-
-            @keyframes fade-scale-in {
-                from {
-                    transform: scale(0.85);
-                    opacity: 0;
-                }
-                to {
-                    transform: scale(1);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes fade-scale-out {
-                from {
-                    transform: scale(1);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(1.1);
-                    opacity: 0;
-                }
-            }
-
-            /* Responsive */
-            @media (max-width: 440px) {
-                .receipt {
-                    max-width: 100%;
-                    padding: 1.5rem 1rem 0;
-                }
-                .receipt.expanded {
-                    max-width: 100%;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="receipt">
-            <header class="receipt-header">
-                <h1>BLOC</h1>
-                <div class="subtitle">Personal Blog</div>
-                <div class="address">github.com/dfxe<br /></div>
-            </header>
-
-            <hr class="dashes" />
-
-            <!--<div class="receipt-info">
-                <span>DATE: 29 MAR 2026</span>
-                <span>TXN #0001</span>
-            </div>
-            <div class="receipt-info">
-                <span>DEVELOPER: DFXE</span>
-                <span>REG #01</span>
-            </div>-->
-
-            <!--<hr class="dashes" />-->
-
-            <main>
-                <article class="post-view" id="post-view"></article>
-
-                <ul class="posts">
-                    <li class="post">
-                        <div class="item-row">
-                            <span class="item-name"
-                                ><a href="#">Your title here</a></span
-                            >
-                            <span class="item-price"></span>
-                        </div>
-                        <div class="item-details">
-                            <time datetime="2026-02-25">25 FEB 2026</time>
-                            <span class="tag">Draft</span>
-                        </div>
-                        <script type="text/markdown">
-                            This is a placeholder post. Replace it with your own writing.
-
-                            You can use **bold**, _italic_, and `inline code`.
-
-                            - First point goes here
-                            - Second point goes here
-                            - Third point goes here
-
-                            > A quote that matters to you.
-
-                            Write something worth reading, or do something worth writing.
-                        </script>
-                    </li>
-                </ul>
-
-                <hr class="double-line" />
-
-                <div class="totals">
-                    <div class="total-row">
-                        <span>POSTS</span>
-                        <span id="total-items">1</span>
-                    </div>
-                    <hr class="dashes dashes--tight" />
-                    <div class="total-row total-row--grand">
-                        <span>TOTAL</span>
-                        <span id="total-time">~1 min</span>
-                    </div>
-                </div>
-            </main>
-
-            <hr class="dashes" />
-
-            <div class="barcode">
-                <div class="barcode-lines" id="barcode"></div>
-                <div class="barcode-number">0 26329 01001 7</div>
-            </div>
-
-            <footer class="receipt-footer">
-                <div class="thank-you">Thank you!</div>
-                <!--<div>
-                    Items can be returned within<br />30 git commits with
-                    receipt
-                </div>-->
-                <br />
-                <div>2026 &mdash; dfxe</div>
-            </footer>
-
-            <div class="monster" aria-hidden="true">
-                <svg
-                    class="monster-svg"
-                    viewBox="0 0 60 60"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g class="monster-antenna monster-antenna--left">
-                        <line
-                            class="monster-stem"
-                            x1="24"
-                            y1="22"
-                            x2="19"
-                            y2="8"
-                        />
-                        <circle class="monster-dot" cx="19" cy="7" r="2.5" />
-                    </g>
-                    <g class="monster-antenna monster-antenna--right">
-                        <line
-                            class="monster-stem"
-                            x1="36"
-                            y1="22"
-                            x2="41"
-                            y2="8"
-                        />
-                        <circle class="monster-dot" cx="41" cy="7" r="2.5" />
-                    </g>
-                    <circle
-                        class="monster-foot monster-foot--left"
-                        cx="22"
-                        cy="52"
-                        r="3"
-                    />
-                    <circle
-                        class="monster-foot monster-foot--right"
-                        cx="38"
-                        cy="52"
-                        r="3"
-                    />
-                    <rect
-                        class="monster-body"
-                        x="12"
-                        y="22"
-                        width="36"
-                        height="28"
-                        rx="14"
-                        ry="14"
-                    />
-                    <g class="monster-eye monster-eye--left">
-                        <circle
-                            class="monster-eye-white"
-                            cx="23"
-                            cy="32"
-                            r="4.2"
-                        />
-                        <circle class="monster-pupil" cx="23" cy="32" r="1.7" />
-                    </g>
-                    <g class="monster-eye monster-eye--right">
-                        <circle
-                            class="monster-eye-white"
-                            cx="37"
-                            cy="32"
-                            r="4.2"
-                        />
-                        <circle class="monster-pupil" cx="37" cy="32" r="1.7" />
-                    </g>
-                    <path class="monster-mouth" d="M26 41 Q30 45 34 41" />
-                </svg>
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>BLOC</span><span>DROP 002 LOADING</span
+                ><span>BLOC</span><span>DROP 002 LOADING</span
+                ><span>BLOC</span><span>DROP 002 LOADING</span
+                ><span>BLOC</span><span>DROP 002 LOADING</span
+                ><span>BLOC</span><span>DROP 002 LOADING</span
+                ><span>BLOC</span><span>DROP 002 LOADING</span>
             </div>
         </div>
 
-        <script>
-            // Generate barcode
-            (function () {
-                var bc = document.getElementById("barcode");
-                var pattern = [
-                    3, 1, 2, 1, 1, 3, 2, 1, 3, 1, 1, 2, 1, 1, 3, 2, 1, 1, 2, 3,
-                    1, 1, 2, 1, 3, 1, 2, 1, 1, 3, 1, 2, 1, 1, 2, 3, 1, 1, 3, 1,
-                    2, 1, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 2, 1, 1, 3, 1, 2, 1, 1,
-                    3, 2,
-                ];
-                for (var i = 0; i < pattern.length; i++) {
-                    var s = document.createElement("span");
-                    s.style.width = pattern[i] + "px";
-                    if (i % 2 === 1) s.style.background = "transparent";
-                    bc.appendChild(s);
-                }
-            })();
+        <main>
+            <article class="post-view" id="post-view"></article>
 
+            <ul class="drops">
+                <li class="drop">
+                    <a class="drop-link" href="#">
+                        <div class="drop-heading">
+                            <h2 class="drop-title">
+                                <span class="drop-num">#001</span>Your title
+                                here
+                            </h2>
+                            <span class="drop-arrow">→</span>
+                        </div>
+                    </a>
+                    <script type="text/markdown">
+                        This is a placeholder post. Replace it with your own writing.
+
+                        You can use **bold**, _italic_, and `inline code`.
+
+                        - First point goes here
+                        - Second point goes here
+                        - Third point goes here
+
+                        > A quote that matters to you.
+
+                        Write something worth reading, or do something worth writing.
+                    </script>
+                </li>
+
+                <li class="drop" aria-disabled="true">
+                    <div class="drop-heading">
+                        <h2 class="drop-title">
+                            <span class="drop-num">#002</span>Untitled Draft
+                        </h2>
+                    </div>
+                </li>
+            </ul>
+
+        </main>
+
+        <footer class="footer-strip">
+            <span>© 2026 — DFXE</span>
+            <a href="https://github.com/dfxe" target="_blank" rel="noopener"
+                >GITHUB.COM/DFXE</a
+            >
+        </footer>
+
+        <script>
             // Markdown parser
             function esc(t) {
                 return t
@@ -991,41 +491,20 @@
                 return html;
             }
 
-            // Render markdown
+            // Render markdown into hidden bodies attached to each live drop
             document
                 .querySelectorAll('script[type="text/markdown"]')
                 .forEach(function (s) {
                     var div = document.createElement("div");
-                    div.className = "post-body";
+                    div.className = "post-body-src";
+                    div.style.display = "none";
                     div.innerHTML = parseMd(s.textContent);
                     s.parentNode.replaceChild(div, s);
                 });
 
-            // Calculate read times (~200 words per minute)
-            (function () {
-                var totalMinutes = 0;
-                document.querySelectorAll(".post").forEach(function (post) {
-                    var body = post.querySelector(".post-body");
-                    var words = body
-                        ? body.textContent.trim().split(/\s+/).length
-                        : 0;
-                    var mins = Math.max(1, Math.ceil(words / 200));
-                    totalMinutes += mins;
-                    var priceEl = post.querySelector(".item-price");
-                    if (priceEl) priceEl.textContent = "~" + mins + " min";
-                });
-                var count = document.querySelectorAll(".post").length;
-                document.getElementById("total-items").textContent = count;
-                document.getElementById("total-time").textContent =
-                    "~" + totalMinutes + " min";
-            })();
-
             // Post view navigation with View Transitions API
-            var postList = document.querySelector(".posts");
+            var dropsList = document.querySelector(".drops");
             var postView = document.getElementById("post-view");
-            var totalsSection = document.querySelector(".totals");
-            var doubleLine = document.querySelector(".double-line");
-            var receipt = document.querySelector(".receipt");
 
             function slugify(text) {
                 return text
@@ -1034,39 +513,50 @@
                     .replace(/^-|-$/g, "");
             }
 
-            // Build slug map and set href attributes
-            var postsBySlug = {};
-            document.querySelectorAll(".post").forEach(function (post) {
-                var a = post.querySelector(".item-name a");
-                var slug = slugify(a.textContent);
-                postsBySlug[slug] = { post: post, a: a };
-                a.setAttribute("href", "/post/" + slug);
-            });
+            function titleText(drop) {
+                var titleEl = drop.querySelector(".drop-title");
+                var numEl = drop.querySelector(".drop-num");
+                if (!titleEl) return "";
+                var t = titleEl.textContent;
+                if (numEl) t = t.replace(numEl.textContent, "");
+                return t.trim();
+            }
 
-            function showPost(post, a, pushHistory) {
-                var title = a.textContent;
+            // Build slug map and set href attributes on live drops only
+            var postsBySlug = {};
+            document
+                .querySelectorAll(".drop:not([aria-disabled])")
+                .forEach(function (drop) {
+                    var linkEl = drop.querySelector(".drop-link");
+                    if (!linkEl) return;
+                    var slug = slugify(titleText(drop));
+                    postsBySlug[slug] = { drop: drop, link: linkEl };
+                    linkEl.setAttribute("href", "/post/" + slug);
+                });
+
+            function showPost(drop, pushHistory) {
+                var numEl = drop.querySelector(".drop-num");
+                var title = titleText(drop);
                 var slug = slugify(title);
-                var details = post.querySelector(".item-details").innerHTML;
-                var body = post.querySelector(".post-body").innerHTML;
+                var body = drop.querySelector(".post-body-src").innerHTML;
                 postView.innerHTML =
-                    '<a class="back" href="/">&larr; BACK</a>' +
+                    '<a class="back" href="/">← BACK TO DROPS</a>' +
+                    '<div class="post-view-meta">DROP ' +
+                    numEl.textContent +
+                    '<span class="tag">LIVE</span></div>' +
                     "<h2>" +
                     title +
                     "</h2>" +
-                    '<div class="post-view-meta">' +
-                    details +
-                    "</div>" +
                     '<div class="post-body">' +
                     body +
                     "</div>";
-                postList.classList.add("hidden");
+                dropsList.classList.add("hidden");
                 postView.classList.add("active");
-                totalsSection.style.display = "none";
-                doubleLine.style.display = "none";
-                receipt.classList.add("expanded");
+                document.body.classList.add("reading");
                 if (pushHistory) {
                     history.pushState({ slug: slug }, "", "/post/" + slug);
                 }
+                window.scrollTo(0, 0);
                 postView
                     .querySelector(".back")
                     .addEventListener("click", function (e) {
@@ -1083,28 +573,35 @@
 
             function hidePost(pushHistory) {
                 postView.classList.remove("active");
-                postList.classList.remove("hidden");
-                totalsSection.style.display = "";
-                doubleLine.style.display = "";
-                receipt.classList.remove("expanded");
+                dropsList.classList.remove("hidden");
+                document.body.classList.remove("reading");
                 if (pushHistory) {
                     history.pushState({}, "", "/");
                 }
             }
 
-            document.querySelectorAll(".item-name a").forEach(function (a) {
+            document.querySelectorAll(".drop-link").forEach(function (a) {
                 a.addEventListener("click", function (e) {
                     e.preventDefault();
-                    var post = a.closest(".post");
+                    var drop = a.closest(".drop");
                     if (document.startViewTransition) {
                         document.startViewTransition(function () {
-                            showPost(post, a, true);
+                            showPost(drop, true);
                         });
                     } else {
-                        showPost(post, a, true);
+                        showPost(drop, true);
                     }
                 });
             });
+
+            // Block clicks on coming-soon drops
+            document
+                .querySelectorAll('.drop[aria-disabled="true"]')
+                .forEach(function (d) {
+                    d.addEventListener("click", function (e) {
+                        e.preventDefault();
+                    });
+                });
 
             // Handle browser back/forward
             window.addEventListener("popstate", function () {
@@ -1113,10 +610,10 @@
                     var entry = postsBySlug[match[1]];
                     if (document.startViewTransition) {
                         document.startViewTransition(function () {
-                            showPost(entry.post, entry.a, false);
+                            showPost(entry.drop, false);
                         });
                     } else {
-                        showPost(entry.post, entry.a, false);
+                        showPost(entry.drop, false);
                     }
                 } else {
                     if (document.startViewTransition) {
@@ -1129,7 +626,7 @@
                 }
             });
 
-            // Open post if URL matches on initial load (or redirected from 404.html)
+            // Open post if URL matches on initial load
             (function () {
                 var redirectPath = sessionStorage.getItem("redirect");
                 if (redirectPath) {
@@ -1139,64 +636,8 @@
                 var match = location.pathname.match(/^\/post\/(.+)/);
                 if (match && postsBySlug[match[1]]) {
                     var entry = postsBySlug[match[1]];
-                    showPost(entry.post, entry.a, false);
+                    showPost(entry.drop, false);
                 }
-            })();
-
-            // Monster interaction
-            (function () {
-                var monster = document.querySelector(".monster");
-                var monsterSvg = document.querySelector(".monster-svg");
-                if (!monster || !monsterSvg) return;
-
-                var quips = [
-                    "HI!",
-                    "BOOP",
-                    "HEY",
-                    "OOF",
-                    "!!!",
-                    ":)",
-                    "BONK",
-                    "404",
-                    "EEP",
-                    "PING",
-                    "BYE",
-                    "ACK",
-                    "HMM",
-                ];
-                var lastIdx = -1;
-
-                function pickQuip() {
-                    var i;
-                    do {
-                        i = Math.floor(Math.random() * quips.length);
-                    } while (i === lastIdx && quips.length > 1);
-                    lastIdx = i;
-                    return quips[i];
-                }
-
-                monsterSvg.addEventListener("click", function () {
-                    monsterSvg.classList.remove("monster-click");
-                    void monsterSvg.offsetWidth;
-                    monsterSvg.classList.add("monster-click");
-
-                    var existing = monster.querySelector(".monster-bubble");
-                    if (existing) existing.remove();
-
-                    var bubble = document.createElement("div");
-                    bubble.className = "monster-bubble";
-                    bubble.textContent = pickQuip();
-                    monster.appendChild(bubble);
-                    bubble.addEventListener("animationend", function () {
-                        bubble.remove();
-                    });
-                });
-
-                monsterSvg.addEventListener("animationend", function (e) {
-                    if (e.animationName === "monster-jump") {
-                        monsterSvg.classList.remove("monster-click");
-                    }
-                });
             })();
         </script>
     </body>
