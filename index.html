@@ -81,8 +81,6 @@
                 }
             }
 
-            /* --- Hero --- */
-
             /* --- Drops --- */
 
             .drops {
@@ -90,19 +88,19 @@
             }
 
             .drop {
-                padding: 1.5rem 1.5rem 2rem;
                 position: relative;
-                transition: background 0.15s ease;
-            }
-
-            .drop:hover {
-                background: var(--ink);
-                color: var(--paper);
             }
 
             .drop a.drop-link {
                 display: block;
                 color: inherit;
+                text-decoration: none;
+                padding: 1.5rem 1.5rem 2rem;
+            }
+
+            .drop a.drop-link:hover {
+                background: var(--ink);
+                color: var(--paper);
             }
 
             .drop-heading {
@@ -157,7 +155,7 @@
                 margin-left: 0.4em;
             }
 
-            .drop:hover .drop-title .drop-num {
+            .drop a.drop-link:hover .drop-title .drop-num {
                 color: var(--paper);
             }
 
@@ -167,180 +165,6 @@
                 font-size: clamp(1.6rem, 5vw, 3rem);
                 line-height: 1;
                 flex-shrink: 0;
-            }
-
-            .drop[aria-disabled="true"] {
-                cursor: not-allowed;
-            }
-
-            .drop[aria-disabled="true"]:hover {
-                background: var(--paper);
-                color: var(--ink);
-            }
-
-            .drop[aria-disabled="true"] .drop-title {
-                color: var(--faded);
-            }
-
-            .drop[aria-disabled="true"] .drop-title .drop-num {
-                color: var(--faded);
-            }
-
-            /* --- Post view --- */
-
-            .post-view {
-                display: none;
-                padding: 2rem 1.5rem 4rem;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-
-            .post-view.active {
-                display: block;
-            }
-
-            .post-view .back {
-                display: inline-block;
-                font-family: "Unbounded", sans-serif;
-                font-weight: 400;
-                font-size: 0.85rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                border: 2px solid var(--ink);
-                padding: 0.35rem 0.7rem;
-                margin-bottom: 2rem;
-                text-decoration: none;
-            }
-
-            .post-view .back:hover {
-                background: var(--ink);
-                color: var(--paper);
-            }
-
-            .post-view h2 {
-                font-family: "Unbounded", sans-serif;
-                font-weight: 400;
-                font-size: clamp(2rem, 6vw, 4.5rem);
-                line-height: 0.92;
-                letter-spacing: -0.03em;
-                text-transform: uppercase;
-                margin-bottom: 1rem;
-            }
-
-            .post-view .post-view-meta {
-                font-family: "Unbounded", sans-serif;
-                font-weight: 400;
-                font-size: 0.8rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                margin-bottom: 2rem;
-                padding-bottom: 1rem;
-                border-bottom: 2px solid var(--ink);
-            }
-
-            .post-view .post-view-meta .tag {
-                display: inline-block;
-                border: 2px solid var(--ink);
-                padding: 0.2rem 0.5rem;
-                margin-left: 0.5rem;
-            }
-
-            .post-body {
-                font-family: "Bricolage Grotesque", sans-serif;
-                font-weight: 400;
-                font-size: 1.05rem;
-                line-height: 1.55;
-            }
-
-            .post-body p {
-                margin-bottom: 1rem;
-            }
-
-            .post-body strong {
-                font-weight: 800;
-            }
-
-            .post-body em {
-                font-style: italic;
-            }
-
-            .post-body a:hover {
-                color: var(--accent);
-            }
-
-            .post-body code {
-                font-family: "Courier New", monospace;
-                background: var(--ink);
-                color: var(--paper);
-                padding: 0.1rem 0.35rem;
-                font-size: 0.9em;
-            }
-
-            .post-body pre {
-                background: var(--ink);
-                color: var(--paper);
-                padding: 1rem;
-                overflow-x: auto;
-                margin: 1rem 0;
-                font-family: "Courier New", monospace;
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-
-            .post-body pre code {
-                background: none;
-                padding: 0;
-            }
-
-            .post-body blockquote {
-                border-left: 6px solid var(--ink);
-                padding: 0.25rem 0 0.25rem 1rem;
-                margin: 1rem 0;
-                font-family: "Unbounded", sans-serif;
-                font-weight: 400;
-                font-size: 1.3rem;
-                line-height: 1.15;
-                text-transform: uppercase;
-                letter-spacing: -0.01em;
-            }
-
-            .post-body ul {
-                list-style: none;
-                padding-left: 0;
-                margin-bottom: 1rem;
-            }
-
-            .post-body li {
-                padding-left: 1.5rem;
-                position: relative;
-                margin-bottom: 0.5rem;
-            }
-
-            .post-body li::before {
-                content: "■";
-                position: absolute;
-                left: 0;
-                color: var(--accent);
-            }
-
-            .post-body h1,
-            .post-body h2,
-            .post-body h3 {
-                font-family: "Unbounded", sans-serif;
-                font-weight: 400;
-                text-transform: uppercase;
-                letter-spacing: -0.02em;
-                margin: 1.5rem 0 0.75rem;
-            }
-
-            .drops.hidden {
-                display: none;
-            }
-
-            body.reading .hero,
-            body.reading .marquee,
-            body.reading .footer-strip {
-                display: none;
             }
 
             /* --- Footer strip --- */
@@ -363,7 +187,7 @@
             }
 
             @media (max-width: 600px) {
-                .drop,
+                .drop a.drop-link,
                 .footer-strip {
                     padding-left: 1rem;
                     padding-right: 1rem;
@@ -390,8 +214,6 @@
         </div>
 
         <main>
-            <article class="post-view" id="post-view"></article>
-
             <ul class="drops">
                 <li class="drop">
                     <a class="drop-link" href="#">
@@ -406,34 +228,23 @@
                             <span class="drop-arrow">→</span>
                         </div>
                     </a>
-                    <script type="text/markdown">
-                        This is a placeholder post. Replace it with your own writing.
-
-                        You can use **bold**, _italic_, and `inline code`.
-
-                        - First point goes here
-                        - Second point goes here
-                        - Third point goes here
-
-                        > A quote that matters to you.
-
-                        Write something worth reading, or do something worth writing.
-                    </script>
                 </li>
 
-                <li class="drop" aria-disabled="true">
-                    <div class="drop-heading">
-                        <h2 class="drop-title">
-                            <span class="drop-title-inner"
-                                >Untitled Draft<span class="drop-num"
-                                    >#002</span
-                                ></span
-                            >
-                        </h2>
-                    </div>
+                <li class="drop">
+                    <a class="drop-link" href="#">
+                        <div class="drop-heading">
+                            <h2 class="drop-title">
+                                <span class="drop-title-inner"
+                                    >Untitled Draft<span class="drop-num"
+                                        >#002</span
+                                    ></span
+                                >
+                            </h2>
+                            <span class="drop-arrow">→</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
-
         </main>
 
         <footer class="footer-strip">
@@ -444,237 +255,6 @@
         </footer>
 
         <script>
-            // Markdown parser
-            function esc(t) {
-                return t
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;");
-            }
-            function inline(t) {
-                return t
-                    .replace(/`([^`]+)`/g, "<code>$1</code>")
-                    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-                    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-            }
-            function parseMd(txt) {
-                var lines = txt
-                    .replace(/^\n+/, "")
-                    .replace(/\n+$/, "")
-                    .split("\n");
-                var indent = lines.reduce(function (m, l) {
-                    if (!l.trim()) return m;
-                    return Math.min(m, l.match(/^ */)[0].length);
-                }, Infinity);
-                if (indent > 0 && indent < Infinity)
-                    lines = lines.map(function (l) {
-                        return l.slice(indent);
-                    });
-                var html = "";
-                lines
-                    .join("\n")
-                    .split(/\n{2,}/)
-                    .forEach(function (block) {
-                        block = block.trim();
-                        if (!block) return;
-                        if (block.match(/^```/)) {
-                            html +=
-                                "<pre><code>" +
-                                esc(
-                                    block
-                                        .replace(/^```\w*\n?/, "")
-                                        .replace(/\n?```$/, ""),
-                                ) +
-                                "</code></pre>";
-                        } else if (block.match(/^>/)) {
-                            html +=
-                                "<blockquote><p>" +
-                                inline(block.replace(/^>\s?/gm, "")) +
-                                "</p></blockquote>";
-                        } else if (block.match(/^- /m)) {
-                            html +=
-                                "<ul>" +
-                                block
-                                    .split(/\n/)
-                                    .map(function (l) {
-                                        return (
-                                            "<li>" +
-                                            inline(l.replace(/^- /, "")) +
-                                            "</li>"
-                                        );
-                                    })
-                                    .join("") +
-                                "</ul>";
-                        } else if (block.match(/^#{1,6} /)) {
-                            var m = block.match(/^(#{1,6}) (.+)/);
-                            html +=
-                                "<h" +
-                                m[1].length +
-                                ">" +
-                                inline(m[2]) +
-                                "</h" +
-                                m[1].length +
-                                ">";
-                        } else {
-                            html +=
-                                "<p>" +
-                                inline(block.replace(/\n/g, " ")) +
-                                "</p>";
-                        }
-                    });
-                return html;
-            }
-
-            // Render markdown into hidden bodies attached to each live drop
-            document
-                .querySelectorAll('script[type="text/markdown"]')
-                .forEach(function (s) {
-                    var div = document.createElement("div");
-                    div.className = "post-body-src";
-                    div.style.display = "none";
-                    div.innerHTML = parseMd(s.textContent);
-                    s.parentNode.replaceChild(div, s);
-                });
-
-            // Post view navigation with View Transitions API
-            var dropsList = document.querySelector(".drops");
-            var postView = document.getElementById("post-view");
-
-            function slugify(text) {
-                return text
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, "-")
-                    .replace(/^-|-$/g, "");
-            }
-
-            function titleText(drop) {
-                var titleEl = drop.querySelector(".drop-title");
-                var numEl = drop.querySelector(".drop-num");
-                if (!titleEl) return "";
-                var t = titleEl.textContent;
-                if (numEl) t = t.replace(numEl.textContent, "");
-                return t.trim();
-            }
-
-            // Build slug map and set href attributes on live drops only
-            var postsBySlug = {};
-            document
-                .querySelectorAll(".drop:not([aria-disabled])")
-                .forEach(function (drop) {
-                    var linkEl = drop.querySelector(".drop-link");
-                    if (!linkEl) return;
-                    var slug = slugify(titleText(drop));
-                    postsBySlug[slug] = { drop: drop, link: linkEl };
-                    linkEl.setAttribute("href", "/post/" + slug);
-                });
-
-            function showPost(drop, pushHistory) {
-                var numEl = drop.querySelector(".drop-num");
-                var title = titleText(drop);
-                var slug = slugify(title);
-                var body = drop.querySelector(".post-body-src").innerHTML;
-                postView.innerHTML =
-                    '<a class="back" href="/">← BACK TO DROPS</a>' +
-                    '<div class="post-view-meta">DROP ' +
-                    numEl.textContent +
-                    '<span class="tag">LIVE</span></div>' +
-                    "<h2>" +
-                    title +
-                    "</h2>" +
-                    '<div class="post-body">' +
-                    body +
-                    "</div>";
-                dropsList.classList.add("hidden");
-                postView.classList.add("active");
-                document.body.classList.add("reading");
-                if (pushHistory) {
-                    history.pushState({ slug: slug }, "", "/post/" + slug);
-                }
-                window.scrollTo(0, 0);
-                postView
-                    .querySelector(".back")
-                    .addEventListener("click", function (e) {
-                        e.preventDefault();
-                        if (document.startViewTransition) {
-                            document.startViewTransition(function () {
-                                hidePost(true);
-                            });
-                        } else {
-                            hidePost(true);
-                        }
-                    });
-            }
-
-            function hidePost(pushHistory) {
-                postView.classList.remove("active");
-                dropsList.classList.remove("hidden");
-                document.body.classList.remove("reading");
-                if (pushHistory) {
-                    history.pushState({}, "", "/");
-                }
-            }
-
-            document.querySelectorAll(".drop-link").forEach(function (a) {
-                a.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    var drop = a.closest(".drop");
-                    if (document.startViewTransition) {
-                        document.startViewTransition(function () {
-                            showPost(drop, true);
-                        });
-                    } else {
-                        showPost(drop, true);
-                    }
-                });
-            });
-
-            // Block clicks on coming-soon drops
-            document
-                .querySelectorAll('.drop[aria-disabled="true"]')
-                .forEach(function (d) {
-                    d.addEventListener("click", function (e) {
-                        e.preventDefault();
-                    });
-                });
-
-            // Handle browser back/forward
-            window.addEventListener("popstate", function () {
-                var match = location.pathname.match(/^\/post\/(.+)/);
-                if (match && postsBySlug[match[1]]) {
-                    var entry = postsBySlug[match[1]];
-                    if (document.startViewTransition) {
-                        document.startViewTransition(function () {
-                            showPost(entry.drop, false);
-                        });
-                    } else {
-                        showPost(entry.drop, false);
-                    }
-                } else {
-                    if (document.startViewTransition) {
-                        document.startViewTransition(function () {
-                            hidePost(false);
-                        });
-                    } else {
-                        hidePost(false);
-                    }
-                }
-            });
-
-            // Open post if URL matches on initial load
-            (function () {
-                var redirectPath = sessionStorage.getItem("redirect");
-                if (redirectPath) {
-                    sessionStorage.removeItem("redirect");
-                    history.replaceState(null, "", redirectPath);
-                }
-                var match = location.pathname.match(/^\/post\/(.+)/);
-                if (match && postsBySlug[match[1]]) {
-                    var entry = postsBySlug[match[1]];
-                    showPost(entry.drop, false);
-                }
-            })();
-
             // Title ticker: enable when text overflows its container
             (function () {
                 var titles = document.querySelectorAll(".drop-title");
