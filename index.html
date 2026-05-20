@@ -41,6 +41,17 @@
                 font: inherit;
             }
 
+            a,
+            button {
+                color: inherit;
+            }
+
+            a:focus-visible,
+            button:focus-visible {
+                outline: 2px solid var(--fg);
+                outline-offset: 4px;
+            }
+
             .ascii-stage {
                 position: fixed;
                 inset: 0;
@@ -94,8 +105,8 @@
             .shell {
                 position: relative;
                 z-index: 1;
-                display: grid;
-                grid-template-rows: auto 1fr auto;
+                display: flex;
+                flex-direction: column;
                 width: 100%;
                 height: 100vh;
                 min-height: 680px;
@@ -125,24 +136,12 @@
                 letter-spacing: 0.18em;
             }
 
-            .variant-meta {
-                display: flex;
-                gap: 12px;
-                align-items: center;
-                text-align: right;
-            }
-
-            .variant-index {
-                color: var(--fg);
-            }
-
-            .options-toggle {
-                min-height: 28px;
-                padding: 0 0 0 12px;
+            .motion-toggle {
+                min-height: 32px;
+                padding: 0;
                 border: 0;
-                border-left: 1px solid var(--line);
-                color: var(--fg);
-                background: #222;
+                color: var(--muted);
+                background: transparent;
                 font-family:
                     "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
                     monospace;
@@ -152,17 +151,19 @@
                 cursor: pointer;
             }
 
-            .options-toggle:hover {
-                color: var(--muted);
+            .motion-toggle:hover {
+                color: var(--fg);
             }
 
             main {
-                display: grid;
-                align-content: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1 1 auto;
                 width: 100%;
                 min-height: 0;
                 margin: 0 auto;
-                padding: clamp(28px, 5vh, 64px) 0;
+                padding: 0;
             }
 
             .hero {
@@ -173,116 +174,24 @@
 
             .hero > div {
                 width: min(920px, 100%);
-                margin: 0 auto;
-                text-align: center;
+                margin: 0;
+                text-align: left;
             }
 
             h1 {
                 max-width: 920px;
-                margin: 0 auto;
-                font-size: clamp(4.4rem, 9vw, 9.6rem);
+                margin: 0;
+                font-size: clamp(1rem, 2vw, 2.125rem);
                 font-weight: 560;
                 letter-spacing: 0;
-                line-height: 0.89;
+                line-height: 1.02;
             }
 
             .summary {
                 max-width: 590px;
-                margin: 28px auto 0;
+                margin: 18px 0 0;
                 color: var(--muted);
                 font-size: clamp(1rem, 1.35vw, 1.2rem);
-            }
-
-            .panel {
-                position: fixed;
-                top: clamp(76px, 12vh, 118px);
-                right: clamp(18px, 3vw, 34px);
-                z-index: 4;
-                width: clamp(300px, 22vw, 390px);
-                transform: translateX(calc(100% + 48px));
-                border-top: 1px solid var(--line);
-                border-bottom: 1px solid var(--line);
-                max-height: calc(100vh - clamp(110px, 16vh, 150px));
-                min-height: 0;
-                overflow: auto;
-                opacity: 0;
-                pointer-events: none;
-                background: #222;
-                padding: 22px 0;
-                transition:
-                    opacity 180ms ease,
-                    transform 220ms ease;
-            }
-
-            body.is-panel-open .panel {
-                transform: translateX(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .panel h2 {
-                margin: 0 0 14px;
-                color: var(--fg);
-                font-size: 0.86rem;
-                font-weight: 600;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-            }
-
-            .panel p {
-                margin: 0;
-                color: var(--muted);
-                font-size: 0.94rem;
-            }
-
-            .panel-section + .panel-section {
-                margin-top: 24px;
-                padding-top: 22px;
-                border-top: 1px solid rgba(240, 240, 234, 0.15);
-            }
-
-            .variant-nav {
-                display: grid;
-                gap: 2px;
-                max-height: min(26vh, 320px);
-                margin-top: 22px;
-                overflow: auto;
-                padding-right: 6px;
-            }
-
-            .variant-button {
-                display: grid;
-                grid-template-columns: 34px 1fr auto;
-                align-items: center;
-                gap: 14px;
-                min-height: 36px;
-                padding: 0;
-                border: 0;
-                border-bottom: 1px solid rgba(240, 240, 234, 0.15);
-                color: var(--dim);
-                background: #222;
-                text-align: left;
-                cursor: pointer;
-            }
-
-            .variant-button:hover,
-            .variant-button[aria-pressed="true"] {
-                color: var(--fg);
-            }
-
-            .variant-button span {
-                min-width: 0;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            .variant-button code {
-                color: inherit;
-                font-family:
-                    "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
-                    monospace;
-                font-size: 0.76rem;
             }
 
             .footer a {
@@ -290,7 +199,8 @@
                 text-decoration: none;
             }
 
-            .footer a:hover {
+            .footer a:hover,
+            .footer a:focus-visible {
                 color: var(--fg);
             }
 
@@ -317,21 +227,11 @@
                     gap: 10px;
                 }
 
-                .variant-meta {
-                    text-align: left;
-                }
-
-                .options-toggle {
-                    padding-left: 0;
-                    border-left: 0;
-                }
-
                 main {
                     padding: 8vh 0 6vh;
                 }
 
                 .hero {
-                    grid-template-columns: 1fr;
                     align-items: start;
                     gap: 42px;
                 }
@@ -340,27 +240,8 @@
                     text-align: left;
                 }
 
-                .panel {
-                    position: fixed;
-                    top: 104px;
-                    right: 18px;
-                    bottom: 18px;
-                    left: 18px;
-                    width: auto;
-                    transform: translateY(18px);
-                    max-height: none;
-                }
-
-                body.is-panel-open .panel {
-                    transform: translateY(0);
-                }
-
-                .variant-nav {
-                    max-height: 34vh;
-                }
-
                 h1 {
-                    font-size: clamp(3.2rem, 18vw, 5.8rem);
+                    font-size: clamp(0.8rem, 4.5vw, 1.45rem);
                 }
             }
         </style>
@@ -374,220 +255,30 @@
         <div class="shell">
             <header class="topbar">
                 <div class="brand">DFXE</div>
-                <div class="variant-meta">
-                    <span id="variantLabel">Signal Architecture</span>
-                    <span class="variant-index" id="variantIndex">01/15</span>
-                    <button
-                        class="options-toggle"
-                        id="optionsToggle"
-                        type="button"
-                        aria-controls="optionsPanel"
-                        aria-expanded="false"
-                    >
-                        Options
-                    </button>
-                </div>
+                <button
+                    class="motion-toggle"
+                    id="motionToggle"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    Pause motion
+                </button>
             </header>
 
             <main>
                 <section class="hero" aria-labelledby="pageTitle">
                     <div>
-                        <h1 id="pageTitle">Serious digital surfaces.</h1>
+                        <h1 id="pageTitle">Interfaces for high-stakes products.</h1>
                         <p class="summary">
-                            Fifteen restrained ASCII studies for technical portfolios,
-                            product labs, and infrastructure-focused studios.
+                            Systems for teams that need speed, clarity, and interfaces
+                            that hold up under pressure.
                         </p>
                     </div>
 
-                    <aside class="panel" id="optionsPanel" aria-label="Website variants">
-                        <div class="panel-section">
-                            <h2>Variants</h2>
-                            <p id="variantDescription">
-                                Dense signal bands with a measured scan rhythm.
-                            </p>
-                            <nav class="variant-nav" aria-label="ASCII variants">
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="signal"
-                                    aria-pressed="true"
-                                >
-                                    <code>01</code><span>Signal Architecture</span
-                                    ><code>///</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="ledger"
-                                    aria-pressed="false"
-                                >
-                                    <code>02</code><span>Ledger Field</span
-                                    ><code>---</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="radar"
-                                    aria-pressed="false"
-                                >
-                                    <code>03</code><span>Radar Sweep</span
-                                    ><code>+++</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="matrix"
-                                    aria-pressed="false"
-                                >
-                                    <code>04</code><span>Matrix Audit</span
-                                    ><code>###</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="contour"
-                                    aria-pressed="false"
-                                >
-                                    <code>05</code><span>Contour Map</span
-                                    ><code>...</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="baseline"
-                                    aria-pressed="false"
-                                >
-                                    <code>06</code><span>Baseline Grid</span
-                                    ><code>___</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="terminal"
-                                    aria-pressed="false"
-                                >
-                                    <code>07</code><span>Terminal Drift</span
-                                    ><code>&gt;&gt;</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="blueprint"
-                                    aria-pressed="false"
-                                >
-                                    <code>08</code><span>Blueprint Trace</span
-                                    ><code>||</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="archive"
-                                    aria-pressed="false"
-                                >
-                                    <code>09</code><span>Archive Index</span
-                                    ><code>::</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="calibration"
-                                    aria-pressed="false"
-                                >
-                                    <code>10</code><span>Calibration Marks</span
-                                    ><code>++</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="quiet"
-                                    aria-pressed="false"
-                                >
-                                    <code>11</code><span>Quiet Noise</span
-                                    ><code>..</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="axis"
-                                    aria-pressed="false"
-                                >
-                                    <code>12</code><span>Axis Study</span
-                                    ><code>xy</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="window"
-                                    aria-pressed="false"
-                                >
-                                    <code>13</code><span>Window Scan</span
-                                    ><code>[]</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="routing"
-                                    aria-pressed="false"
-                                >
-                                    <code>14</code><span>Routing Plane</span
-                                    ><code>//</code>
-                                </button>
-                                <button
-                                    class="variant-button"
-                                    type="button"
-                                    data-variant="static"
-                                    aria-pressed="false"
-                                >
-                                    <code>15</code><span>Static Field</span
-                                    ><code>--</code>
-                                </button>
-                            </nav>
-                        </div>
-
-                        <div class="panel-section">
-                            <h2>PixiJS Options</h2>
-                            <p id="pixiDescription">
-                                GPU-rendered ASCII particles that respond to cursor movement.
-                            </p>
-                            <nav class="variant-nav" aria-label="PixiJS ASCII effects">
-                                <button class="variant-button pixi-button" type="button" data-pixi="magnet" aria-pressed="false">
-                                    <code>P1</code><span>Magnetic Field</span><code>()</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="ripple" aria-pressed="false">
-                                    <code>P2</code><span>Pointer Ripple</span><code>~~</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="lens" aria-pressed="false">
-                                    <code>P3</code><span>Lens Bend</span><code>&lt;&gt;</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="wake" aria-pressed="false">
-                                    <code>P4</code><span>Cursor Wake</span><code>--</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="gravity" aria-pressed="false">
-                                    <code>P5</code><span>Gravity Well</span><code>++</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="scan" aria-pressed="false">
-                                    <code>P6</code><span>Scan Interrupt</span><code>||</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="orbit" aria-pressed="false">
-                                    <code>P7</code><span>Orbit Nodes</span><code>oo</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="shear" aria-pressed="false">
-                                    <code>P8</code><span>Shear Plane</span><code>//</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="focus" aria-pressed="false">
-                                    <code>P9</code><span>Focus Mask</span><code>[]</code>
-                                </button>
-                                <button class="variant-button pixi-button" type="button" data-pixi="terrain" aria-pressed="false">
-                                    <code>P10</code><span>Terrain Pull</span><code>..</code>
-                                </button>
-                            </nav>
-                        </div>
-                    </aside>
                 </section>
             </main>
 
             <footer class="footer">
-                <span>Portfolio system / 2026</span>
                 <a href="https://github.com/dfxe" target="_blank" rel="noopener"
                     >github.com/dfxe</a
                 >
@@ -859,74 +550,22 @@
 
             const canvas = document.getElementById("asciiCanvas");
             const pixiStage = document.getElementById("pixiStage");
-            const label = document.getElementById("variantLabel");
-            const index = document.getElementById("variantIndex");
-            const description = document.getElementById("variantDescription");
-            const pixiDescription = document.getElementById("pixiDescription");
-            const optionsToggle = document.getElementById("optionsToggle");
-            const buttons = Array.from(document.querySelectorAll("[data-variant]"));
-            const pixiButtons = Array.from(document.querySelectorAll("[data-pixi]"));
+            const motionToggle = document.getElementById("motionToggle");
             const engine = new AsciiMotion.Engine(canvas);
-            const variantOrder = buttons.map((button) => button.dataset.variant);
-
-            function setPanelOpen(isOpen) {
-                document.body.classList.toggle("is-panel-open", isOpen);
-                optionsToggle.setAttribute("aria-expanded", String(isOpen));
-            }
+            const prefersReducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            ).matches;
 
             class PixiAsciiEffects {
                 constructor(target) {
                     this.target = target;
                     this.ready = Boolean(window.PIXI);
-                    this.effect = "magnet";
+                    this.effect = "gravity";
                     this.items = [];
                     this.pointer = {
                         x: window.innerWidth * 0.5,
                         y: window.innerHeight * 0.5,
                         active: false,
-                    };
-
-                    this.effects = {
-                        magnet: {
-                            label: "Magnetic Field",
-                            description: "A sparse radial field bends toward the cursor.",
-                        },
-                        ripple: {
-                            label: "Pointer Ripple",
-                            description: "Concentric ASCII rings expand through the field.",
-                        },
-                        lens: {
-                            label: "Lens Bend",
-                            description: "Vertical optical columns bend around the cursor.",
-                        },
-                        wake: {
-                            label: "Cursor Wake",
-                            description: "Diagonal wake lines drift behind pointer motion.",
-                        },
-                        gravity: {
-                            label: "Gravity Well",
-                            description: "A compressed center mass pulls nearby marks inward.",
-                        },
-                        scan: {
-                            label: "Scan Interrupt",
-                            description: "Horizontal scan bands break around the cursor.",
-                        },
-                        orbit: {
-                            label: "Orbit Nodes",
-                            description: "Sparse node constellations orbit the active cursor.",
-                        },
-                        shear: {
-                            label: "Shear Plane",
-                            description: "Angled planes shear across a quiet baseline grid.",
-                        },
-                        focus: {
-                            label: "Focus Mask",
-                            description: "A soft focus aperture resolves nearby characters.",
-                        },
-                        terrain: {
-                            label: "Terrain Pull",
-                            description: "Topographic ASCII contours lift under the pointer.",
-                        },
                     };
 
                     if (!this.ready) return;
@@ -939,7 +578,7 @@
                         resolution: 1,
                     });
                     this.target.appendChild(this.app.view);
-                    this.layer = new PIXI.ParticleContainer(1400, {
+                    this.layer = new PIXI.ParticleContainer(6000, {
                         position: true,
                         rotation: true,
                         scale: true,
@@ -987,8 +626,11 @@
                     this.items = [];
                     const stepX = 34;
                     const stepY = 31;
-                    const cols = Math.ceil(window.innerWidth / stepX) + 2;
-                    const rows = Math.ceil(window.innerHeight / stepY) + 2;
+                    const bounds = this.target.getBoundingClientRect();
+                    const width = bounds.width || window.innerWidth;
+                    const height = bounds.height || window.innerHeight;
+                    const cols = Math.ceil(width / stepX) + 2;
+                    const rows = Math.ceil(height / stepY) + 3;
                     const marks = ".:-=+*/|[]01";
 
                     for (let y = 0; y < rows; y += 1) {
@@ -1017,11 +659,9 @@
                     this.applyEffectGlyphs();
                 }
 
-                setEffect(name) {
-                    if (this.effects[name]) {
-                        this.effect = name;
-                        this.applyEffectGlyphs();
-                    }
+                setEffect() {
+                    this.effect = "gravity";
+                    this.applyEffectGlyphs();
                 }
 
                 start() {
@@ -1034,19 +674,7 @@
 
                 applyEffectGlyphs() {
                     if (!this.ready) return;
-                    const glyphSets = {
-                        magnet: "+-:.",
-                        ripple: ".-oO",
-                        lens: "|[]()",
-                        wake: "/-",
-                        gravity: ".*+o@",
-                        scan: "_-",
-                        orbit: ".+o*",
-                        shear: "/\\",
-                        focus: ".:=#",
-                        terrain: ".:-=^",
-                    };
-                    const glyphs = glyphSets[this.effect] || ".:-";
+                    const glyphs = ".*+o@";
                     this.items.forEach((item) => {
                         const glyph =
                             glyphs[(item.col * 3 + item.row * 5) % glyphs.length];
@@ -1081,106 +709,14 @@
                         let scale = 1;
                         let visible = 0.16;
 
-                        if (this.effect === "magnet") {
-                            const ray = Math.abs(((centerDistance + t * 18) % 140) - 70);
-                            const spoke = Math.abs(Math.sin(Math.atan2(item.y - cy, item.x - cx) * 8));
-                            visible = ray < 5 || spoke > 0.985 ? 0.48 : 0.08;
-                        }
-                        if (this.effect === "ripple") {
-                            const ring = Math.abs(((centerDistance - t * 38) % 150) - 75);
-                            visible = ring < 4 ? 0.62 : 0.07;
-                        }
-                        if (this.effect === "lens") {
-                            visible = item.col % 5 === 0 ? 0.42 : 0.08;
-                            if (item.row % 9 === 0) visible += 0.18;
-                        }
-                        if (this.effect === "wake") {
-                            const diagonal = Math.abs(((item.x + item.y * 1.6 - t * 65) % 190) - 95);
-                            visible = diagonal < 5 ? 0.52 : 0.06;
-                        }
-                        if (this.effect === "gravity") {
-                            visible = Math.max(0.08, 0.56 - centerDistance / Math.max(width, height));
-                            if ((item.col + item.row) % 11 === 0) visible += 0.14;
-                        }
-                        if (this.effect === "scan") {
-                            visible = item.row % 5 === 0 ? 0.48 : 0.07;
-                            const scanLine = Math.abs(((item.y + t * 82) % 220) - 110);
-                            if (scanLine < 8) visible = 0.72;
-                        }
-                        if (this.effect === "orbit") {
-                            const node = item.col % 7 === 0 && item.row % 5 === 0;
-                            const orbital = Math.abs(centerDistance - (160 + Math.sin(t * 0.5) * 26));
-                            visible = node || orbital < 10 ? 0.58 : 0.04;
-                        }
-                        if (this.effect === "shear") {
-                            const plane = Math.abs(((item.x - item.y * 1.25 + t * 34) % 170) - 85);
-                            visible = plane < 6 || item.row % 12 === 0 ? 0.5 : 0.07;
-                        }
-                        if (this.effect === "focus") {
-                            const aperture = Math.abs(centerDistance - Math.min(width, height) * 0.3);
-                            visible = aperture < 18 ? 0.52 : 0.08;
-                        }
-                        if (this.effect === "terrain") {
-                            const value =
-                                Math.sin(item.x * 0.016 + t * 0.18) +
-                                Math.cos(item.y * 0.022 - t * 0.14) +
-                                Math.sin((item.x + item.y) * 0.012);
-                            visible = Math.abs(value % 0.42) < 0.045 ? 0.58 : 0.06;
-                        }
+                        visible = Math.max(0.08, 0.56 - centerDistance / Math.max(width, height));
+                        if ((item.col + item.row) % 11 === 0) visible += 0.14;
 
                         alpha = visible + influence * 0.42;
 
-                        if (this.effect === "magnet") {
-                            x -= (dx / distance) * influence * 34;
-                            y -= (dy / distance) * influence * 22;
-                            rotation = influence * 0.35;
-                        }
-                        if (this.effect === "ripple") {
-                            const wave = Math.sin(distance * 0.05 - t * 3.2) * influence;
-                            x += (dx / distance) * wave * 24;
-                            y += (dy / distance) * wave * 24;
-                            alpha += Math.abs(wave) * 0.28;
-                        }
-                        if (this.effect === "lens") {
-                            const bend = Math.sin(influence * Math.PI) * 42;
-                            x += (dx / distance) * bend;
-                            y += (dy / distance) * bend;
-                            scale = 1 + influence * 0.35;
-                        }
-                        if (this.effect === "wake") {
-                            x += Math.sin(t * 2 + item.seed) * influence * 38;
-                            y += Math.cos(t * 1.4 + item.seed) * influence * 16;
-                            alpha += influence * 0.32;
-                        }
-                        if (this.effect === "gravity") {
-                            x -= dx * influence * 0.22;
-                            y -= dy * influence * 0.22;
-                            scale = 1 - influence * 0.25;
-                        }
-                        if (this.effect === "scan") {
-                            const scan = Math.abs(((item.y + t * 70) % 180) - 90);
-                            alpha = scan < 10 ? 0.72 : 0.14 + influence * 0.45;
-                            x += influence * Math.sin(item.y * 0.03) * 24;
-                        }
-                        if (this.effect === "orbit") {
-                            const angle = t * 1.2 + item.seed;
-                            x += Math.cos(angle) * influence * 34;
-                            y += Math.sin(angle) * influence * 34;
-                            rotation = angle * influence;
-                        }
-                        if (this.effect === "shear") {
-                            x += Math.sin(item.y * 0.02 + t) * 12 + influence * dy * 0.16;
-                            rotation = influence * 0.22;
-                        }
-                        if (this.effect === "focus") {
-                            alpha = distance < 170 ? 0.78 : 0.12;
-                            scale = distance < 170 ? 1.08 : 0.92;
-                        }
-                        if (this.effect === "terrain") {
-                            const lift = Math.sin(item.x * 0.025 + item.y * 0.03 + t) * 9;
-                            y += lift - influence * 42;
-                            alpha += influence * 0.36;
-                        }
+                        x -= dx * influence * 0.22;
+                        y -= dy * influence * 0.22;
+                        scale = 1 - influence * 0.25;
 
                         item.sprite.position.set(x, y);
                         item.sprite.rotation = rotation;
@@ -1192,99 +728,49 @@
 
             const pixiEffects = new PixiAsciiEffects(pixiStage);
 
-            function activateVariant(name) {
-                const variant = AsciiMotion.variants[name];
-                const position = variantOrder.indexOf(name);
-                if (!variant || position < 0) return;
-
-                engine.setVariant(name);
-                engine.start();
-                pixiEffects.stop();
-                pixiStage.classList.remove("is-active");
-                document.body.classList.remove("is-pixi-active");
-                label.textContent = variant.label;
-                index.textContent = `${String(position + 1).padStart(2, "0")}/${String(
-                    variantOrder.length,
-                ).padStart(2, "0")}`;
-                description.textContent = variant.description;
-                buttons.forEach((button) => {
-                    button.setAttribute(
-                        "aria-pressed",
-                        String(button.dataset.variant === name),
-                    );
-                });
-                pixiButtons.forEach((button) => {
-                    button.setAttribute("aria-pressed", "false");
-                });
-                setPanelOpen(false);
-            }
-
-            buttons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    activateVariant(button.dataset.variant);
-                });
-            });
-
-            function activatePixiEffect(name) {
-                const effect = pixiEffects.effects[name];
-                if (!effect) return;
-
-                pixiEffects.setEffect(name);
+            function activateGravityWell() {
+                if (!pixiEffects.ready) {
+                    engine.setVariant("signal");
+                    engine.stop();
+                    pixiStage.classList.remove("is-active");
+                    document.body.classList.remove("is-pixi-active");
+                    return;
+                }
+                pixiEffects.setEffect();
                 engine.stop();
                 pixiEffects.start();
                 pixiStage.classList.add("is-active");
                 document.body.classList.add("is-pixi-active");
-                label.textContent = effect.label;
-                index.textContent = `P${String(
-                    pixiButtons.findIndex((button) => button.dataset.pixi === name) + 1,
-                ).padStart(2, "0")}/10`;
-                pixiDescription.textContent = pixiEffects.ready
-                    ? effect.description
-                    : "PixiJS could not load. Check network access and refresh.";
-                description.textContent = "Original ASCII variants remain available above.";
-                buttons.forEach((button) => {
-                    button.setAttribute("aria-pressed", "false");
-                });
-                pixiButtons.forEach((button) => {
-                    button.setAttribute(
-                        "aria-pressed",
-                        String(button.dataset.pixi === name),
-                    );
-                });
-                setPanelOpen(false);
             }
 
-            optionsToggle.addEventListener("click", () => {
-                setPanelOpen(!document.body.classList.contains("is-panel-open"));
-            });
+            function pauseMotion() {
+                pixiEffects.stop();
+                motionToggle.textContent = "Resume motion";
+                motionToggle.setAttribute("aria-pressed", "true");
+            }
 
-            window.addEventListener("keydown", (event) => {
-                if (event.key === "Escape") {
-                    setPanelOpen(false);
+            function resumeMotion() {
+                activateGravityWell();
+                motionToggle.textContent = "Pause motion";
+                motionToggle.setAttribute("aria-pressed", "false");
+            }
+
+            motionToggle.addEventListener("click", () => {
+                if (motionToggle.getAttribute("aria-pressed") === "true") {
+                    resumeMotion();
+                    return;
                 }
+                pauseMotion();
             });
 
-            pixiButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    activatePixiEffect(button.dataset.pixi);
-                });
-            });
-
-            window.addEventListener("keydown", (event) => {
-                const current = variantOrder.indexOf(engine.variant);
-                if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-                    activateVariant(variantOrder[(current + 1) % variantOrder.length]);
-                }
-                if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-                    activateVariant(
-                        variantOrder[
-                            (current - 1 + variantOrder.length) % variantOrder.length
-                        ],
-                    );
-                }
-            });
-
-            activatePixiEffect("focus");
+            if (prefersReducedMotion) {
+                engine.setVariant("signal");
+                engine.stop();
+                motionToggle.textContent = "Resume motion";
+                motionToggle.setAttribute("aria-pressed", "true");
+            } else {
+                activateGravityWell();
+            }
         </script>
     </body>
 </html>
