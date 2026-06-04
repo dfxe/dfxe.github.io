@@ -59,7 +59,7 @@
                 overflow: hidden;
                 opacity: 1;
                 pointer-events: none;
-                transition: opacity 180ms ease;
+                transition: opacity 700ms ease;
             }
 
             .pixi-stage {
@@ -69,7 +69,7 @@
                 overflow: hidden;
                 opacity: 0;
                 pointer-events: none;
-                transition: opacity 220ms ease;
+                transition: opacity 700ms ease;
             }
 
             .pixi-stage.is-active {
@@ -506,8 +506,19 @@
 
                     resize() {
                         const rect = this.target.getBoundingClientRect();
-                        this.cols = Math.max(42, Math.ceil(rect.width / this.cell.width));
-                        this.rows = Math.max(28, Math.ceil(window.innerHeight / this.cell.height));
+                        const styles = window.getComputedStyle(this.target);
+                        const fontSize = parseFloat(styles.fontSize) || 12;
+                        if (!this.measureCtx) {
+                            this.measureCtx = document
+                                .createElement("canvas")
+                                .getContext("2d");
+                        }
+                        this.measureCtx.font = `${fontSize}px ${styles.fontFamily}`;
+                        const charWidth =
+                            this.measureCtx.measureText("0").width || fontSize * 0.6;
+                        const charHeight = fontSize; // line-height: 1
+                        this.cols = Math.max(42, Math.ceil(rect.width / charWidth));
+                        this.rows = Math.max(28, Math.ceil(window.innerHeight / charHeight));
                         this.render(performance.now());
                     }
 
@@ -769,7 +780,13 @@
                 motionToggle.textContent = "Resume motion";
                 motionToggle.setAttribute("aria-pressed", "true");
             } else {
-                activateGravityWell();
+                // Show the animated ASCII intro for exactly 2 seconds,
+                // then fade into the real Pixi graphic.
+                engine.setVariant("signal");
+                engine.start();
+                setTimeout(() => {
+                    activateGravityWell();
+                }, 2000);
             }
         </script>
     </body>
