@@ -17,7 +17,7 @@
                 --dim: #74766e;
                 --line: rgba(240, 240, 234, 0.22);
                 /* Matches the body background. A util mark can use this to knock
-                   a hole in itself — see the clipboard-box logo, where the front
+                   a hole in itself — see the cBoite logo, where the front
                    board has to hide the back sheet. */
                 --mark-bg: #222;
             }
@@ -86,6 +86,11 @@
                 height: 100%;
             }
 
+            /* The one thing on the page allowed under 12px, and deliberately:
+               it is aria-hidden background art rather than text, and it is sized
+               in characters — a 12px floor would drop the grid resolution by a
+               third and visibly coarsen the whole backdrop. Every actual piece
+               of text here is 12.16px or larger. */
             .ascii-canvas {
                 width: 100%;
                 min-height: 100%;
@@ -301,6 +306,21 @@
                 text-decoration: none;
             }
 
+            /* The signature: mark plus URL as one link, so there is only one
+               thing here to tab to and to read out. */
+            .sig {
+                display: flex;
+                align-items: center;
+                gap: 11px;
+            }
+
+            .sig-mark {
+                display: block;
+                width: 26px;
+                height: 26px;
+                flex: none;
+            }
+
             .footer a:hover,
             .footer a:focus-visible {
                 color: var(--fg);
@@ -391,10 +411,10 @@
                             <li>
                                 <a
                                     class="util"
-                                    href="https://dfxe.github.io/clipboard-box/"
+                                    href="https://dfxe.github.io/cboite/"
                                 >
                                     <span class="util-mark">
-                                        <!-- clipboard-box. A board with a second
+                                        <!-- cBoite. A board with a second
                                              sheet behind it: the thing it does is
                                              keep more than one. Everything is
                                              currentColor except the clip, which
@@ -408,7 +428,7 @@
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                             role="img"
-                                            aria-label="clipboard-box"
+                                            aria-label="cBoite"
                                         >
                                             <!-- Only the part of the back sheet
                                                  that is actually visible, so the
@@ -438,7 +458,7 @@
                                         </svg>
                                     </span>
                                     <span class="util-text">
-                                        <span class="util-name">clipboard-box</span>
+                                        <span class="util-name">cBoite</span>
                                         <span class="util-desc"
                                             >Clipboard and screenshot vault for macOS
                                             and GNOME.</span
@@ -453,9 +473,35 @@
             </main>
 
             <footer class="footer">
-                <a href="https://github.com/dfxe" target="_blank" rel="noopener"
-                    >github.com/dfxe</a
-                >
+                <a class="sig" href="https://github.com/dfxe" target="_blank" rel="noopener">
+                    <!-- dfxe, set as four geometric glyphs on a 2×2 grid: a bowl
+                         and stem, a hooked stem and crossbar, two crossed
+                         diagonals, a ring and bar. The purple square behind the
+                         yellow one is offset rather than a border, which is what
+                         gives it the printed look.
+                         The one saturated thing on the site, and deliberately —
+                         it is a signature, not part of the interface. -->
+                    <svg class="sig-mark" viewBox="0 0 48 48" aria-hidden="true">
+                        <rect x="0" y="3" width="45" height="45" rx="9" fill="#4b2fa8" />
+                        <rect x="3" y="0" width="45" height="45" rx="9" fill="#f5e400" />
+                        <g
+                            fill="none"
+                            stroke="#4b2fa8"
+                            stroke-width="2.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="15.5" cy="17.5" r="4" />
+                            <path d="M19.5 9.5V17.5" />
+                            <path d="M31 23V13a2.4 2.4 0 0 1 3.4-2.2" />
+                            <path d="M27.6 16.4h6.6" />
+                            <path d="M12.6 28.6l7.2 7.2M19.8 28.6l-7.2 7.2" />
+                            <circle cx="32" cy="32.2" r="4" />
+                            <path d="M28 32.2h8" />
+                        </g>
+                    </svg>
+                    <span>github.com/dfxe</span>
+                </a>
             </footer>
         </div>
 
