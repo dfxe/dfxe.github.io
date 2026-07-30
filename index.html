@@ -16,6 +16,10 @@
                 --muted: #a8aaa1;
                 --dim: #74766e;
                 --line: rgba(240, 240, 234, 0.22);
+                /* Matches the body background. A util mark can use this to knock
+                   a hole in itself — see the clipboard-box logo, where the front
+                   board has to hide the back sheet. */
+                --mark-bg: #222;
             }
 
             html,
@@ -194,6 +198,104 @@
                 font-size: clamp(1rem, 1.35vw, 1.2rem);
             }
 
+            /* ── Utils ───────────────────────────────────────────────────
+               Small things worth pointing at, under the same mono/hairline
+               treatment as the topbar and footer. Sized in clamp() because the
+               shell is a fixed 100vh on desktop and this has to fit inside
+               whatever the hero leaves over. */
+
+            .utils {
+                width: min(920px, 100%);
+                margin: clamp(28px, 5vh, 58px) 0 0;
+            }
+
+            .utils-title {
+                margin: 0 0 4px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--line);
+                color: var(--muted);
+                font-family:
+                    "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+                    monospace;
+                font-size: 0.76rem;
+                font-weight: 400;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+
+            .util-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .util {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 14px 2px;
+                border-bottom: 1px solid rgba(240, 240, 234, 0.09);
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .util-mark {
+                display: flex;
+                flex: none;
+                color: var(--muted);
+                transition: color 200ms ease;
+            }
+
+            .util-mark svg {
+                display: block;
+                width: clamp(26px, 2.4vw, 32px);
+                height: auto;
+            }
+
+            .util-text {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .util-name {
+                display: block;
+                font-size: 1rem;
+                font-weight: 500;
+            }
+
+            .util-desc {
+                display: block;
+                margin-top: 2px;
+                overflow: hidden;
+                color: var(--muted);
+                font-size: 0.88rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .util-go {
+                flex: none;
+                color: var(--dim);
+                font-family:
+                    "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+                    monospace;
+                font-size: 0.76rem;
+                letter-spacing: 0.08em;
+                transition: color 200ms ease;
+            }
+
+            .util:hover,
+            .util:focus-visible {
+                color: var(--fg);
+            }
+
+            .util:hover .util-mark,
+            .util:focus-visible .util-mark,
+            .util:hover .util-go,
+            .util:focus-visible .util-go {
+                color: var(--fg);
+            }
+
             .footer a {
                 color: inherit;
                 text-decoration: none;
@@ -243,6 +345,14 @@
                 h1 {
                     font-size: clamp(0.8rem, 4.5vw, 1.45rem);
                 }
+
+                /* One line ellipsises to "vault for macO…" at this width. The
+                   shell already scrolls on mobile, so let it wrap instead. */
+                .util-desc {
+                    overflow: visible;
+                    text-overflow: clip;
+                    white-space: normal;
+                }
             }
         </style>
     </head>
@@ -275,6 +385,70 @@
                         </p>
                     </div>
 
+                    <section class="utils" aria-labelledby="utilsTitle">
+                        <h2 class="utils-title" id="utilsTitle">Utils</h2>
+                        <ul class="util-list">
+                            <li>
+                                <a
+                                    class="util"
+                                    href="https://dfxe.github.io/clipboard-box/"
+                                >
+                                    <span class="util-mark">
+                                        <!-- clipboard-box. A board with a second
+                                             sheet behind it: the thing it does is
+                                             keep more than one. Everything is
+                                             currentColor except the clip, which
+                                             carries the GNOME blue the project
+                                             already brands with. -->
+                                        <svg
+                                            viewBox="0 0 32 32"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            role="img"
+                                            aria-label="clipboard-box"
+                                        >
+                                            <!-- Only the part of the back sheet
+                                                 that is actually visible, so the
+                                                 stack does not depend on anything
+                                                 being painted over it. -->
+                                            <path
+                                                opacity=".45"
+                                                d="M9 6.5A3 3 0 0 1 12 3.5H25A3 3 0 0 1 28 6.5V21.5A3 3 0 0 1 25 24.5H23"
+                                            />
+                                            <!-- The one fill in the mark, and the
+                                                 only reason --mark-bg exists: it
+                                                 hides the back sheet's left half. -->
+                                            <rect
+                                                x="4"
+                                                y="7"
+                                                width="19"
+                                                height="21"
+                                                rx="3"
+                                                style="fill: var(--mark-bg, #222)"
+                                            />
+                                            <path d="M8.5 15h10M8.5 19.5h7" />
+                                            <path
+                                                fill="#4a86cf"
+                                                stroke="#4a86cf"
+                                                d="M9.5 9V5.5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2V9z"
+                                            />
+                                        </svg>
+                                    </span>
+                                    <span class="util-text">
+                                        <span class="util-name">clipboard-box</span>
+                                        <span class="util-desc"
+                                            >Clipboard and screenshot vault for macOS
+                                            and GNOME.</span
+                                        >
+                                    </span>
+                                    <code class="util-go">↗</code>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
             </main>
 
